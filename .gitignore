@@ -43,3 +43,13 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+# AI tooling & slicing workspace (local only, not pushed)
+.claude/
+.cursor/
+CLAUDE.md
+AGENTS.md
+figma-code/
+docs/ui/
+docs/ai-workflows/
+tool/figma_export.dart

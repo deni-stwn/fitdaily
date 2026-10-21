@@ -56,6 +56,7 @@ flutter:
     - assets/translations/
     - assets/dummy/
     - assets/images/
+    - assets/icons/
 
   fonts:
     # Figma: Instrument Sans (variable — supports wght 450/550 via fontVariations)

@@ -1,0 +1,7 @@
+{
+  "devices": [
+    {"id": "watch-1", "name": "Samsung watch 8 Classic", "image": "assets/images/device_samsung_watch.png", "connected": true},
+    {"id": "watch-2", "name": "Samsung watch 8 Classic", "image": "assets/images/device_samsung_watch.png", "connected": false},
+    {"id": "watch-3", "name": "Samsung watch 8 Classic", "image": "assets/images/device_samsung_watch.png", "connected": false}
+  ]
+}

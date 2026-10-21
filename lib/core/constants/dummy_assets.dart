@@ -1,4 +1,5 @@
 class DummyAssets {
   static const _base = 'assets/dummy';
-  static const products = '$_base/products.json';
+  static const home = '$_base/home.json';
+  static const devices = '$_base/devices.json';
 }

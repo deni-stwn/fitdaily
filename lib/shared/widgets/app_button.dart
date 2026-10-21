@@ -1,11 +1,10 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../config/theme/app_colors.dart';
 import '../../config/theme/app_dimens.dart';
 import '../../config/theme/app_text_styles.dart';
+import 'brand_effects.dart';
 
 /// Figma component "Button" (`84:348`) — `Variant` property.
 enum AppButtonVariant { primary, secondary, outline, tertiary }
@@ -13,9 +12,11 @@ enum AppButtonVariant { primary, secondary, outline, tertiary }
 /// Figma component "Button" (`84:348`) — `sizes` property.
 enum AppButtonSize { large, medium, small }
 
-/// Figma "Button". Only `Variant=Default · sizes=Large` has a spec so far
-/// (from 01-onboarding); other combinations throw until
-/// `figma-code/_components/button` is exported.
+/// Figma "Button". Specs so far (all `sizes=Large`): Default (01-onboarding),
+/// Secondary + leading icon (10 goal chips), Outline (09 "Setup Later"),
+/// Secondary small (18 "Full Report").
+/// Other combinations throw until `figma-code/_components/button` is
+/// exported.
 class AppButton extends StatelessWidget {
   const AppButton({
     super.key,
@@ -24,6 +25,7 @@ class AppButton extends StatelessWidget {
     this.variant = AppButtonVariant.primary,
     this.size = AppButtonSize.large,
     this.fullWidth = false,
+    this.icon,
   });
 
   final String label;
@@ -33,6 +35,9 @@ class AppButton extends StatelessWidget {
 
   /// Stretch to the parent's width (Figma instance resized to "Fill").
   final bool fullWidth;
+
+  /// Optional 24×24 leading icon (e.g. goal chips), 8 before the label.
+  final Widget? icon;
 
   @override
   Widget build(BuildContext context) {
@@ -48,26 +53,66 @@ class AppButton extends StatelessWidget {
           height: spec.height.h,
           width: fullWidth ? double.infinity : null,
           child: CustomPaint(
-            painter: _InnerShadowPainter(
+            painter: InnerShadowPainter(
               color: spec.background,
+              border: spec.border,
               radius: radius,
               shadows: spec.innerShadows,
             ),
             child: Stack(
               alignment: Alignment.center,
               children: [
-                Padding(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: spec.horizontalPadding.w,
+                if (icon == null)
+                  Padding(
+                    padding: EdgeInsets.symmetric(
+                      horizontal: spec.horizontalPadding.w,
+                    ),
+                    child: Text(
+                      label,
+                      textAlign: TextAlign.center,
+                      style: spec.labelStyle,
+                    ),
+                  )
+                else
+                  // figma: padding 16 · icon 24 · label with 8 each side.
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: AppSpacing.s3.w),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        SizedBox(width: 24.w, height: 24.w, child: icon),
+                        Padding(
+                          padding: EdgeInsets.symmetric(
+                            horizontal: AppSpacing.s2.w,
+                          ),
+                          child: Text(label, style: spec.labelStyle),
+                        ),
+                      ],
+                    ),
                   ),
-                  child: Text(
-                    label,
-                    textAlign: TextAlign.center,
-                    style: spec.labelStyle,
-                  ),
-                ),
                 if (spec.glow != null)
-                  Positioned(top: spec.glow!.top.h, child: _Glow(spec.glow!)),
+                  Positioned.fill(
+                    child: LayoutBuilder(
+                      builder: (context, box) {
+                        final width = box.maxWidth * spec.glow!.widthFactor;
+                        return Stack(
+                          clipBehavior: Clip.none,
+                          children: [
+                            Positioned(
+                              top: spec.glow!.top.h,
+                              left: (box.maxWidth - width) / 2,
+                              child: BlurredEllipse(
+                                width: width,
+                                height: spec.glow!.height.h,
+                                color: spec.glow!.color,
+                                blur: spec.glow!.blur,
+                              ),
+                            ),
+                          ],
+                        );
+                      },
+                    ),
+                  ),
               ],
             ),
           ),
@@ -81,15 +126,17 @@ class _ButtonSpec {
   const _ButtonSpec({
     required this.height,
     required this.horizontalPadding,
-    required this.background,
     required this.labelStyle,
-    required this.innerShadows,
+    this.background,
+    this.border,
+    this.innerShadows = const [],
     this.glow,
   });
 
   final double height;
   final double horizontalPadding;
-  final Color background;
+  final Color? background;
+  final BorderSide? border;
   final TextStyle labelStyle;
   final List<BoxShadow> innerShadows;
   final _GlowSpec? glow;
@@ -102,9 +149,10 @@ class _ButtonSpec {
         horizontalPadding: AppSpacing.s3 + AppSpacing.s2,
         background: AppColors.bgBrand,
         labelStyle: AppTextStyles.bodySmallStrong,
-        innerShadows: _buttonEffect,
+        innerShadows: buttonEffect,
         glow: const _GlowSpec(
-          width: 139.13,
+          // Figma: 139.13 on a 400 button, 130.78 on 376 → 34.78% of width.
+          widthFactor: 139.13 / 400,
           height: 14,
           top: -7,
           color: AppColors.textSecondary,
@@ -114,97 +162,60 @@ class _ButtonSpec {
         ),
       );
     }
+    if (size == AppButtonSize.large) {
+      switch (variant) {
+        // 10-user-setup-goal-2: unselected goal chips.
+        case AppButtonVariant.secondary:
+          return _ButtonSpec(
+            height: 48,
+            horizontalPadding: AppSpacing.s3 + AppSpacing.s2,
+            background: AppColors.white200,
+            labelStyle: AppTextStyles.bodySmallStrong,
+          );
+        // 09-user-setup-goal: "Setup Later".
+        case AppButtonVariant.outline:
+          return _ButtonSpec(
+            height: 48,
+            horizontalPadding: AppSpacing.s3 + AppSpacing.s2,
+            border: const BorderSide(color: AppColors.white200),
+            labelStyle: AppTextStyles.bodySmallStrong.copyWith(
+              color: AppColors.textTertiary,
+            ),
+          );
+        case AppButtonVariant.primary:
+        case AppButtonVariant.tertiary:
+          break;
+      }
+    }
+    // 18-home: "Full Report".
+    if (variant == AppButtonVariant.secondary && size == AppButtonSize.small) {
+      return _ButtonSpec(
+        height: 32,
+        horizontalPadding: AppSpacing.s2 + AppSpacing.s2,
+        background: AppColors.white200,
+        labelStyle: AppTextStyles.bodySmallStrong,
+      );
+    }
     throw UnimplementedError(
       'AppButton $variant/$size: no Figma spec yet — export '
       'figma-code/_components/button first.',
     );
   }
-
-  /// Figma effect style "Button Effect" (see [AppShadows.buttonEffectSpec]).
-  static const _buttonEffect = [
-    BoxShadow(color: Color(0x80000000), offset: Offset(-2, -2), blurRadius: 6),
-    BoxShadow(color: Color(0x26000000), offset: Offset(0, 32), blurRadius: 16),
-    BoxShadow(color: Color(0x33FFFFFF), offset: Offset(2, 2), blurRadius: 2),
-  ];
 }
 
 class _GlowSpec {
   const _GlowSpec({
-    required this.width,
+    required this.widthFactor,
     required this.height,
     required this.top,
     required this.color,
     required this.blur,
   });
 
-  final double width;
+  /// Glow width as a fraction of the button width.
+  final double widthFactor;
   final double height;
   final double top;
   final Color color;
   final double blur;
-}
-
-class _Glow extends StatelessWidget {
-  const _Glow(this.spec);
-
-  final _GlowSpec spec;
-
-  @override
-  Widget build(BuildContext context) {
-    // Figma layer blur ≈ 2 × sigma.
-    final sigma = spec.blur / 2;
-    return ImageFiltered(
-      imageFilter: ImageFilter.blur(sigmaX: sigma, sigmaY: sigma),
-      child: Container(
-        width: spec.width.w,
-        height: spec.height.h,
-        decoration: ShapeDecoration(
-          color: spec.color,
-          shape: const OvalBorder(),
-        ),
-      ),
-    );
-  }
-}
-
-/// Paints the fill plus Figma INNER_SHADOW effects, which [BoxShadow]
-/// cannot express.
-class _InnerShadowPainter extends CustomPainter {
-  const _InnerShadowPainter({
-    required this.color,
-    required this.radius,
-    required this.shadows,
-  });
-
-  final Color color;
-  final BorderRadius radius;
-  final List<BoxShadow> shadows;
-
-  @override
-  void paint(Canvas canvas, Size size) {
-    final rect = Offset.zero & size;
-    final rrect = radius.toRRect(rect);
-
-    canvas.save();
-    canvas.clipRRect(rrect);
-    canvas.drawRRect(rrect, Paint()..color = color);
-    for (final shadow in shadows) {
-      final paint = Paint()
-        ..color = shadow.color
-        // Figma blur radius ≈ 2 × sigma.
-        ..maskFilter = MaskFilter.blur(BlurStyle.normal, shadow.blurRadius / 2);
-      final path = Path()
-        ..fillType = PathFillType.evenOdd
-        ..addRect(rect.inflate(shadow.blurRadius + shadow.offset.distance + 1))
-        ..addRRect(rrect.shift(shadow.offset));
-      canvas.drawPath(path, paint);
-    }
-    canvas.restore();
-  }
-
-  @override
-  bool shouldRepaint(_InnerShadowPainter oldDelegate) =>
-      oldDelegate.color != color ||
-      oldDelegate.radius != radius ||
-      oldDelegate.shadows != shadows;
 }

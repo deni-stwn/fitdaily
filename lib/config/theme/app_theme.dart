@@ -24,6 +24,9 @@ class AppTheme {
     return ThemeData(
       useMaterial3: true,
       brightness: Brightness.dark,
+      // Mobile design: keep the same density on desktop (macOS defaults to
+      // compact, which shifts text inside fields ~4pt down).
+      visualDensity: VisualDensity.standard,
       primaryColor: AppColors.bgBrand,
       scaffoldBackgroundColor: AppColors.bg,
       fontFamily: AppFonts.appFontFamily,
