@@ -10,7 +10,7 @@ Generate a **complete, production-ready feature** in one command, following this
 lib/features/{feature_name}/
 ├── data/
 │   ├── datasources/
-│   │   └── {feature_name}_remote_data_source.dart   ← abstract + impl
+│   │   └── {feature_name}_local_data_source.dart    ← abstract + impl (dummy data)
 │   ├── models/
 │   │   └── {entity_name}_model.dart                 ← extends entity + fromJson/toJson
 │   └── repositories/
@@ -63,9 +63,9 @@ mason make feature --feature_name notification --entity_name Notification
 
 ## ✅ Post-Generation — Only 3 steps
 
-### 1. Add the endpoint in `core/constants/api_endpoints.dart`
+### 1. Fill dummy data in `{feature_name}_local_data_source.dart`
 ```dart
-static const String orders = '/orders';
+return const [OrderModel(/* fields */)];
 ```
 
 ### 2. Register the feature in `core/di/injection_container.dart`
@@ -92,6 +92,6 @@ GoRoute(
 ---
 
 ## 📝 Notes
-- `{entity_name}_model.dart` contains empty `fromJson` and `toJson` methods — complete them according to your API
+- `{entity_name}_model.dart` contains empty `fromJson` and `toJson` methods — complete them if you load dummy JSON from `assets/dummy/`
 - The entity is simple — add the fields you need
 - Works automatically with `safeCall` located in `core/utils/safe_call.dart`

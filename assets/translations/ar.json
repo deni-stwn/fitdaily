@@ -1,5 +1,5 @@
 {
-    "app_name":"اسم التطبيق",
+    "app_name": "اسم التطبيق",
     "authentication": {
         "login": "تسجيل الدخول",
         "register": "تسجيل حساب جديد",
@@ -22,5 +22,11 @@
         "home": "الرئيسية",
         "cart": "السلة",
         "profile": "الملف الشخصي"
+    },
+    "onboarding": {
+        "title": "Live fit Every Day",
+        "continue": "Continue",
+        "have_account": "Already Had an account ?",
+        "sign_in": "Sign In"
     }
 }

@@ -45,14 +45,14 @@ mason make feature --feature_name <snake> --entity_name <Pascal>
 
 1. Domain entity + repository contract + `UseCase` returning `Either`
 2. Model extends entity; manual `fromJson`/`toJson`
-3. Remote DS returns raw data via `ApiConsumer` (not Either)
-4. `RepositoryImpl` uses `safeCall`; optional Hive cache like home
+3. Local DS returns dummy data (inline or `assets/dummy/*.json`), not Either
+4. `RepositoryImpl` uses `safeCall`
 5. Cubit + `CancelableSafeCubitMixin`; states Initial/Loading/Loaded/Error
 6. Page: `BlocProvider(create: (_) => sl<XCubit>()..load...)`
 
 ### Step 4 — Wire project integration
 
-1. `ApiEndpoints` entry
+1. UI per `docs/ui/SLICING_RULES.md` (reuse `docs/ui/COMPONENTS.md`)
 2. `initFeature()` in `injection_container.dart`
 3. `RouteNames` + `app_router.dart` (+ `NavEnum` if tab)
 4. Locale keys in `assets/translations/` + regenerate if UI strings added
@@ -65,7 +65,7 @@ flutter analyze
 flutter test
 ```
 
-Regenerate code if Hive/Envied annotations were added.
+Regenerate code if Hive annotations were added.
 
 ## Project-Specific Rules
 

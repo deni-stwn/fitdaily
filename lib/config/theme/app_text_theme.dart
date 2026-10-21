@@ -1,36 +1,25 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import 'app_fonts.dart';
+import 'app_text_styles.dart';
 
+/// Maps Figma text styles onto Material [TextTheme] slots so default widgets
+/// inherit them. In custom widgets prefer [AppTextStyles] directly.
 class AppTextTheme {
-  static TextTheme light = TextTheme(
-    titleLarge: TextStyle(
-      fontSize: 20.sp,
-      fontWeight: FontWeight.w700,
-      fontFamily: AppFonts.appFontFamily,
-    ),
-    titleMedium: TextStyle(
-      fontSize: 18.sp,
-      fontWeight: FontWeight.w600,
-      fontFamily: AppFonts.appFontFamily,
-    ),
-    bodyLarge: TextStyle(
-      fontSize: 16.sp,
-      fontWeight: FontWeight.w500,
-      fontFamily: AppFonts.appFontFamily,
-    ),
-    bodyMedium: TextStyle(
-      fontSize: 14.sp,
-      fontWeight: FontWeight.w400,
-      fontFamily: AppFonts.appFontFamily,
-    ),
-    bodySmall: TextStyle(
-      fontSize: 12.sp,
-      fontWeight: FontWeight.w300,
-      fontFamily: AppFonts.appFontFamily,
-    ),
+  static TextTheme get dark => TextTheme(
+    displayLarge: AppTextStyles.display,
+    headlineLarge: AppTextStyles.headingLarge,
+    headlineMedium: AppTextStyles.headingMedium,
+    headlineSmall: AppTextStyles.headingSmall,
+    titleLarge: AppTextStyles.headingSmall,
+    titleMedium: AppTextStyles.bodyLargeStrong,
+    titleSmall: AppTextStyles.bodyMediumStrong,
+    bodyLarge: AppTextStyles.bodyLarge,
+    bodyMedium: AppTextStyles.bodyMedium,
+    bodySmall: AppTextStyles.bodySmall,
+    labelLarge: AppTextStyles.bodyMediumStrong,
+    labelMedium: AppTextStyles.bodySmallStrong,
+    labelSmall: AppTextStyles.bodySmall,
   );
 
-  static TextTheme dark = light;
+  static TextTheme get light => dark;
 }

@@ -44,7 +44,7 @@ void main() {
   });
 
   test('returns repository failure', () async {
-    const failure = ServerFailure('boom');
+    const failure = UnexpectedFailure('boom');
     repository.nextResult = const Left(failure);
 
     final result = await useCase.call();

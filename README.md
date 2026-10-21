@@ -22,12 +22,12 @@
 | 🧱 | **Feature-first Clean Architecture** — `presentation` → `domain` ← `data` |
 | 🎯 | **Cubit + GetIt** — predictable state & dependency injection |
 | 🔀 | **Either\<Failure, T\>** — typed errors via `dartz` + `safeCall` |
-| 🌐 | **Dio + Hive** — network with local cache fallback |
+| 🗂️ | **Dummy data** — local data sources (`assets/dummy/`), no backend |
 | 🧭 | **go_router** — shell navigation with bottom tabs |
 | 🌍 | **Flavors + i18n** — `dev` / `prod` + `easy_localization` |
 | ⚡ | **Mason brick** — scaffold a full feature in one command |
 
-> **Reference feature:** `home` — pagination, cache fallback, cancelable cubit.
+> **Reference feature:** `home` — dummy JSON, pagination, cancelable cubit.
 
 ---
 
@@ -51,8 +51,8 @@
 ```
 lib/
 ├── main_dev.dart / main_prod.dart     # Flavor entry points
-├── config/          # env · routing · theme
-├── core/            # DI · network · errors · storage
+├── config/          # routing · theme
+├── core/            # DI · errors · storage
 ├── features/        # home · cart · profile · theme
 │   └── <feature>/
 │       ├── data/ · domain/ · presentation/
@@ -68,14 +68,7 @@ lib/
 # 1. Install
 flutter pub get
 
-# 2. Configure env (edit lib/config/env/.env)
-API_KEY=your_api_key
-BASE_URL=https://your-api.example.com
-
-# 3. Generate code
-dart run build_runner build --delete-conflicting-outputs
-
-# 4. Run
+# 2. Run
 flutter run --flavor dev -t lib/main_dev.dart
 ```
 
@@ -102,7 +95,7 @@ flutter build appbundle --flavor prod -t lib/main_prod.dart
 ### Code Generation
 
 ```bash
-# Envied + Hive (after editing .env or Hive models)
+# Hive (after editing Hive models)
 dart run build_runner build --delete-conflicting-outputs
 
 # Translation keys
@@ -131,7 +124,7 @@ After `mason make feature ...`, wire it up in **3 steps**:
 
 | Step | File | Action |
 |:----:|------|--------|
-| 1️⃣ | `lib/core/constants/api_endpoints.dart` | Add API endpoint |
+| 1️⃣ | `lib/features/<feature>/data/datasources/<feature>_local_data_source.dart` | Fill dummy data |
 | 2️⃣ | `lib/core/di/injection_container.dart` | Call `initYourFeature()` in `initCore()` |
 | 3️⃣ | `lib/config/routing/app_router.dart` | Register `GoRoute` |
 
@@ -150,10 +143,9 @@ After `mason make feature ...`, wire it up in **3 steps**:
 |-------|----------|
 | Architecture | `dartz` · `equatable` · `get_it` |
 | State | `flutter_bloc` |
-| Network | `dio` · `internet_connection_checker_plus` |
 | Routing | `go_router` |
 | Storage | `hive` · `shared_preferences` · `flutter_secure_storage` |
-| Config | `flutter_flavor` · `envied` |
+| Config | `flutter_flavor` |
 | UI / i18n | `flutter_screenutil` · `shimmer` · `easy_localization` |
 
 ---

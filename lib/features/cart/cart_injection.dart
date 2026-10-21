@@ -1,5 +1,5 @@
 import '../../core/di/injection_container.dart';
-import 'data/datasources/cart_remote_data_source.dart';
+import 'data/datasources/cart_local_data_source.dart';
 import 'data/repositories/cart_repository_impl.dart';
 import 'domain/repositories/cart_repository.dart';
 import 'domain/usecases/get_cart_usecase.dart';
@@ -16,7 +16,7 @@ void initCart() {
   sl.registerLazySingleton<CartRepository>(() => CartRepositoryImpl(sl()));
 
   // Data Sources
-  sl.registerLazySingleton<CartRemoteDataSource>(
-    () => CartRemoteDataSourceImpl(),
+  sl.registerLazySingleton<CartLocalDataSource>(
+    () => CartLocalDataSourceImpl(),
   );
 }

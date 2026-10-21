@@ -12,12 +12,11 @@ class AppWrapper extends StatelessWidget {
     final mediaQuery = MediaQuery.of(context);
     final scale = mediaQuery.textScaler.scale(1).clamp(minScale, maxScale);
 
+    // No global bottom padding: Figma screens are full-bleed, so each page
+    // handles insets itself (SafeArea / bottom nav).
     return MediaQuery(
       data: mediaQuery.copyWith(textScaler: TextScaler.linear(scale)),
-      child: Padding(
-        padding: EdgeInsets.only(bottom: mediaQuery.padding.bottom),
-        child: child,
-      ),
+      child: child,
     );
   }
 }

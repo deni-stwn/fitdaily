@@ -1,13 +1,9 @@
+# Native splash (before Flutter starts) — solid brand color, no logo,
+# so it blends into the Flutter SplashPage (figma: 683:53900).
 flutter_native_splash:
-  color: "#ffffff"
-  image: assets/icons/logo.png
-  color_dark: "#222222"
-  image_dark: assets/icons/logo.png
+  color: "#5B23FF"
   android: true
   ios: true
   web: false
   android_12:
-    image: assets/images/android12splash.png
-    image_dark: assets/images/android12splash.png
-    icon_background_color: "#ffffff"
-    icon_background_color_dark: "#222222"
+    color: "#5B23FF"

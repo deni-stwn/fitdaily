@@ -19,16 +19,17 @@ alwaysApply: false
 
 ## Theming
 
-- Theme from `lib/config/theme/` (`AppTheme`, `AppColors`, `AppTextTheme`, `AppFonts`).
-- Font family: `TheYearofHandicrafts`.
-- Use `Theme.of(context).textTheme.titleLarge` (Material 3 names).
-- Theme toggle: `ThemeCubit` via `AppProviders` (global).
+- Tokens from Figma in `lib/config/theme/`: `AppColors` (Figma `--color-*`), `AppTextStyles` (Figma `heading/*`, `body/*`, `display`), `AppSpacing`, `AppRadius`, `AppShadows`, `AppDesign` (`app_dimens.dart`).
+- Fonts: `InstrumentSans` (variable, weights 450/550 via `fontVariations`) and `InstrumentSerif` (display).
+- Prefer `AppTextStyles.*` in custom widgets; `textTheme` slots are mapped in `AppTextTheme` for default widgets.
+- Design is dark-only: `AppTheme.lightTheme` aliases `darkTheme`; default theme is dark.
+- Never hardcode hex colors or font sizes. Follow `docs/ui/SLICING_RULES.md`.
 
 ## Responsive & assets
 
-- `flutter_screenutil`: `.w`, `.h`, `.sp`.
+- `flutter_screenutil`: `.w`, `.h`, `.r`, `.sp`; `designSize` = Figma frame 440×956 (`AppDesign.frameSize`).
 - Remote images: `CustomNetworkImage` / `cached_network_image` — always handle errors.
-- Shared UI: `lib/shared/widgets/` (`NoDataFoundWidget`, shimmers, toggles).
+- Shared UI: `lib/shared/widgets/`; registry of Figma components in `docs/ui/COMPONENTS.md` (reuse first, register new ones).
 
 ## Localization
 

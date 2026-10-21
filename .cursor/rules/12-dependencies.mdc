@@ -15,25 +15,24 @@ Use packages already in `pubspec.yaml`. Do not add alternate stacks for the same
 | State | `flutter_bloc`, `equatable` | Cubit + Equatable states |
 | DI | `get_it` | `sl` / feature `init*` |
 | Nav | `go_router` | `app_router.dart` |
-| Network | `dio`, `internet_connection_checker_plus` | `ApiConsumer` / `NetworkInfo` |
 | FP errors | `dartz` | `Either` |
 | Storage | `hive`, `hive_flutter`, `shared_preferences`, `flutter_secure_storage` | cache / prefs / tokens |
 | UI | `flutter_screenutil`, `shimmer`, `cached_network_image`, `cupertino_icons` | sizing / placeholders / images |
 | i18n | `easy_localization`, `intl` | translations |
-| Config | `envied`, `flutter_flavor` | env + flavors |
+| Config | `flutter_flavor` | flavors |
 | Logging | `logger` | app logger |
 | Splash/icons | `flutter_native_splash`, `flutter_launcher_icons` | native assets |
-| Codegen (dev) | `build_runner`, `envied_generator`, `hive_generator`, `flutter_lints` | generate + lint |
+| Codegen (dev) | `build_runner`, `hive_generator`, `flutter_lints` | generate + lint |
 
 ## Preferred patterns
 
-- Networking only through `ApiConsumer`, not ad-hoc `Dio()` in features.
+- No networking: data from local data sources (dummy). Do not add HTTP clients.
 - Localization only through easy_localization / `LocaleKeys`.
 - DI only through GetIt — no injectable annotations.
 
 ## Do not add without explicit user request
 
-Riverpod, Provider, GetX, auto_route, Freezed, json_serializable, retrofit, Firebase packages.
+Riverpod, Provider, GetX, auto_route, Freezed, json_serializable, retrofit, Dio/http, Firebase packages. (`flutter_svg` is expected for Figma icons — ask before adding.)
 
 ## Note
 

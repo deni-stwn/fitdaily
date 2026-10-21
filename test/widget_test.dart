@@ -6,9 +6,7 @@ void main() {
   testWidgets('NoDataFoundWidget renders empty-state title', (tester) async {
     await tester.pumpWidget(
       const MaterialApp(
-        home: Scaffold(
-          body: NoDataFoundWidget(title: 'No Data Found'),
-        ),
+        home: Scaffold(body: NoDataFoundWidget(title: 'No Data Found')),
       ),
     );
     await tester.pumpAndSettle();

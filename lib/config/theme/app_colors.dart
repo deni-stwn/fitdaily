@@ -1,43 +1,73 @@
 import 'package:flutter/material.dart';
 
+/// Color tokens from Figma "Fitdaily (Product)" variables.
+/// Names mirror the Figma variable names (`--color-bg-secondary` → [bgSecondary]).
+/// Never hardcode hex values in widgets — add the token here first.
 class AppColors {
-  // Primary Colors - Gradient based
-  static const Color primary = Color(0xFF6366F1);
-  static const Color primaryLight = Color(0xFF818CF8);
-  static const Color primaryDark = Color(0xFF4F46E5);
+  AppColors._();
 
-  // Secondary Colors
-  static const Color secondary = Color(0xFF8B5CF6);
-  static const Color secondaryLight = Color(0xFFA78BFA);
-  static const Color secondaryDark = Color(0xFF7C3AED);
+  // ── Background ─────────────────────────────────────────────── --color-bg-*
+  static const Color bg = Color(0xFF1E1E1E);
+  static const Color bgSecondary = Color(0xFF2C2C2C);
+  static const Color bgTertiary = Color(0xFF383838);
+  static const Color bgBrand = Color(0xFF5B23FF);
+  static const Color bgSelected = Color(0xFF4E4D75);
+  static const Color bgDisabled = Color(0xFF757575);
+  static const Color bgDisabledSecondary = Color(0xFFB3B3B3);
+  static const Color bgSuccess = Color(0xFF198F51);
+  static const Color bgSuccessTertiary = Color(0xFF476656);
+  static const Color bgWarningTertiary = Color(0xFF5C4100);
+  static const Color bgDanger = Color(0xFFE03E1A);
+  static const Color bgDangerTertiary = Color(0xFF60332A);
 
-  // Accent Colors
-  static const Color accent = Color(0xFF06B6D4);
-  static const Color accentLight = Color(0xFF22D3EE);
-  static const Color accentDark = Color(0xFF0891B2);
+  // ── Gradients (no Figma variable) ─────────────────────────────────────────
+  static const Color splashGradientEnd = Color(0xFF120A2F); // figma: 683:53900
 
-  static const Color error = Color(0xFFEF4444);
+  // ── Text ───────────────────────────────────────────────────── --color-text-*
+  static const Color text = Color(0xFFFFFFFF);
+  static const Color textSecondary = Color(0xB2FFFFFF);
+  static const Color textTertiary = Color(0x66FFFFFF);
+  static const Color textDisabled = Color(0x66FFFFFF);
+  static const Color textOnDisabled = Color(0xFF757575);
+  static const Color textOnInverse = Color(0xE5000000);
+  static const Color textSelected = Color(0xFFB7AEFF);
+  static const Color textSuccess = Color(0xFF79D297);
+  static const Color textWarning = Color(0xFFF7D15F);
+  static const Color textDanger = Color(0xFFFCA397);
 
-  // Neutral Colors
+  // ── Icon ───────────────────────────────────────────────────── --color-icon-*
+  static const Color icon = Color(0xFFFFFFFF);
+  static const Color iconSecondary = Color(0xB2FFFFFF);
+  static const Color iconTertiary = Color(0x66FFFFFF);
+  static const Color iconBrand = Color(0xFFB7AEFF);
+  static const Color iconBrandSecondary = Color(0xFF714DFF);
+  static const Color iconSelected = Color(0xFFB7AEFF);
+  static const Color iconSuccess = Color(0xFF198F51);
+  static const Color iconWarning = Color(0xFFF3C11B);
+  static const Color iconDanger = Color(0xFFE03E1A);
+
+  // ── Border ─────────────────────────────────────────────────── --color-border-*
+  static const Color border = Color(0xFF444444);
+  static const Color borderDisabled = Color(0xFF444444);
+  static const Color borderOnSelected = Color(0xFF6A699B);
+  static const Color borderDanger = Color(0xFF963323);
+  static const Color borderDefaultSecondary = Color(0xFF1E1E1E);
+
+  // ── Ramps (raw palette) ────────────────────────────────────── --ramp-*
+  static const Color violet100 = Color(0xFFF3F2FF);
+  static const Color violet600 = Color(0xFF714DFF);
+  static const Color violet700 = Color(0xFF5B23FF);
+  static const Color violet1000 = Color(0xFF1F076E);
+  static const Color blue700 = Color(0xFF069EFF);
+  static const Color red800 = Color(0xFF7C2622);
+  static const Color red900 = Color(0xFF54211C);
+  static const Color white100 = Color(0x0DFFFFFF);
+  static const Color white200 = Color(0x1AFFFFFF);
+  static const Color white600 = Color(0xCCFFFFFF);
+
+  // ── Basic ──────────────────────────────────────────────────────────────────
   static const Color white = Color(0xFFFFFFFF);
   static const Color black = Color(0xFF000000);
-
-  // Gray Scale - Light Theme
-  static const Color gray50 = Color(0xFFF9FAFB);
-  static const Color gray100 = Color(0xFFF3F4F6);
-  static const Color gray200 = Color(0xFFE5E7EB);
-  static const Color gray300 = Color(0xFFD1D5DB);
-  static const Color gray400 = Color(0xFF9CA3AF);
-  static const Color gray500 = Color(0xFF6B7280);
-  static const Color gray600 = Color(0xFF4B5563);
-  static const Color gray700 = Color(0xFF374151);
-  static const Color gray800 = Color(0xFF1F2937);
-  static const Color gray900 = Color(0xFF111827);
-  static const Color divider = Color(0xFFEAECF0);
-  
-  // Dark Theme Colors
-  static const Color darkBackground = Color(0xFF0F172A);
-  static const Color darkSurface = Color(0xFF1E293B);
-  static const Color darkCard = Color(0xFF334155);
-  static const Color darkBorder = Color(0xFF475569);
+  static const Color transparent = Color(0x00000000);
+  static const Color divider = border;
 }

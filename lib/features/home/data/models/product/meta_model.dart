@@ -38,4 +38,4 @@ class MetaModel extends MetaEntity {
       qrCode: qrCode,
     );
   }
-} 
+}

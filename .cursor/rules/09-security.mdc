@@ -1,9 +1,7 @@
 ---
-description: Secrets, Envied, secure storage, and safe logging
+description: Secrets, secure storage, and safe logging
 globs:
-  - "lib/config/env/**/*"
   - "lib/core/storage/**/*.dart"
-  - "lib/core/network/**/*.dart"
 alwaysApply: false
 ---
 
@@ -11,8 +9,7 @@ alwaysApply: false
 
 ## Secrets & env
 
-- API values via Envied: `lib/config/env/env.dart` + `lib/config/env/.env` (`obfuscate: true`).
-- After changing `.env` or `@EnviedField`, run build_runner.
+- No API/env config in this project (Envied removed).
 - Never hardcode real API keys in Dart sources, rules, skills, commits messages, or chat.
 - Do not paste secret values into documentation.
 

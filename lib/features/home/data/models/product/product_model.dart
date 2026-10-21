@@ -36,10 +36,13 @@ class ProductModel extends ProductEntity {
       description: json['description'] as String? ?? '',
       category: json['category'] as String? ?? '',
       price: (json['price'] as num?)?.toDouble() ?? 0.0,
-      discountPercentage: (json['discountPercentage'] as num?)?.toDouble() ?? 0.0,
+      discountPercentage:
+          (json['discountPercentage'] as num?)?.toDouble() ?? 0.0,
       rating: (json['rating'] as num?)?.toDouble() ?? 0.0,
       stock: json['stock'] as int? ?? 0,
-      tags: (json['tags'] as List<dynamic>?)?.map((e) => e as String).toList() ?? [],
+      tags:
+          (json['tags'] as List<dynamic>?)?.map((e) => e as String).toList() ??
+          [],
       brand: json['brand'] as String?,
       sku: json['sku'] as String? ?? '',
       weight: json['weight'] as int? ?? 0,
@@ -49,7 +52,8 @@ class ProductModel extends ProductEntity {
       warrantyInformation: json['warrantyInformation'] as String? ?? '',
       shippingInformation: json['shippingInformation'] as String? ?? '',
       availabilityStatus: json['availabilityStatus'] as String? ?? '',
-      reviews: (json['reviews'] as List<dynamic>?)
+      reviews:
+          (json['reviews'] as List<dynamic>?)
               ?.map((e) => ReviewModel.fromJson(e as Map<String, dynamic>))
               .toList() ??
           [],
@@ -63,7 +67,11 @@ class ProductModel extends ProductEntity {
               barcode: '',
               qrCode: '',
             ),
-      images: (json['images'] as List<dynamic>?)?.map((e) => e as String).toList() ?? [],
+      images:
+          (json['images'] as List<dynamic>?)
+              ?.map((e) => e as String)
+              .toList() ??
+          [],
       thumbnail: json['thumbnail'] as String? ?? '',
     );
   }
@@ -122,8 +130,3 @@ class ProductModel extends ProductEntity {
     );
   }
 }
-
-
-
-
-

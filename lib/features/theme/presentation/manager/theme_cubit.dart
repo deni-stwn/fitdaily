@@ -9,10 +9,8 @@ class ThemeCubit extends Cubit<ThemeState> {
   final GetThemeUseCase getThemeUseCase;
   final SaveThemeUseCase saveThemeUseCase;
 
-  ThemeCubit({
-    required this.getThemeUseCase,
-    required this.saveThemeUseCase,
-  }) : super(ThemeInitial());
+  ThemeCubit({required this.getThemeUseCase, required this.saveThemeUseCase})
+    : super(ThemeInitial());
 
   Future<void> loadData() async {
     emit(ThemeLoading());
@@ -30,9 +28,9 @@ class ThemeCubit extends Cubit<ThemeState> {
       final newThemeType = currentThemeType == ThemeType.light
           ? ThemeType.dark
           : ThemeType.light;
-      
+
       final newTheme = ThemeEntity(type: newThemeType);
-      
+
       try {
         await saveThemeUseCase(newTheme);
         emit(ThemeSuccess(newTheme));

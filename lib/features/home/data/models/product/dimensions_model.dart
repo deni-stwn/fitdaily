@@ -16,18 +16,10 @@ class DimensionsModel extends DimensionsEntity {
   }
 
   Map<String, dynamic> toJson() {
-    return {
-      'width': width,
-      'height': height,
-      'depth': depth,
-    };
+    return {'width': width, 'height': height, 'depth': depth};
   }
 
   DimensionsEntity toEntity() {
-    return DimensionsEntity(
-      width: width,
-      height: height,
-      depth: depth,
-    );
+    return DimensionsEntity(width: width, height: height, depth: depth);
   }
 }

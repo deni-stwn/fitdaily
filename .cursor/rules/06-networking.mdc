@@ -1,54 +1,33 @@
 ---
-description: Dio ApiConsumer, repositories, models, and pagination
+description: Data layer without backend — local data sources, dummy data, repositories, pagination
 globs:
-  - "lib/core/network/**/*.dart"
-  - "lib/core/constants/api_endpoints.dart"
   - "lib/**/data/**/*.dart"
   - "lib/shared/models/**/*.dart"
+  - "lib/core/constants/dummy_assets.dart"
+  - "assets/dummy/**"
 alwaysApply: false
 ---
 
-# Networking & Data
+# Data Layer (no backend)
 
-## HTTP stack
-
-- Abstract: `ApiConsumer` (`get` / `post` / `patch` / `delete`).
-- Impl: `DioConsumer` — `baseUrl` from `FlavorConfig.instance.variables['baseUrl']`.
-- Interceptors: `ApiInterceptor`, `LoggingInterceptor` (`ConnectivityInterceptor` exists but is commented out).
-- Endpoints: `lib/core/constants/api_endpoints.dart`.
-- Secrets / base URL source: Envied `Env` in `lib/config/env/`.
+This project is **slicing-only**. There is no API, no Dio, no Envied, no base URL.
 
 ## Layer responsibilities
 
-1. **Remote data source** — call `ApiConsumer`, return parsed models/entities (raw types, not `Either`).
-2. **RepositoryImpl** — wrap remote calls with `safeCall()`; return `Either<Failure, T>`.
-3. **Models** — extend entities; manual `fromJson` / `toJson` (no json_serializable).
-4. **Local data source** (optional) — Hive or SharedPreferences.
+1. **Local data source** (`data/datasources/<feature>_local_data_source.dart`) — returns dummy models
+   (inline constants or JSON from `assets/dummy/`, path in `DummyAssets`). May `await Future.delayed`
+   to keep loading states visible. Returns raw types, not `Either`.
+2. **RepositoryImpl** — wraps data source calls with `safeCall()`; returns `Either<Failure, T>`.
+3. **Models** — extend entities; manual `fromJson` / `toJson` (used for dummy JSON).
 
-## Cache fallback (follow `home`)
-
-```dart
-final cached = localDataSource.fetchProducts();
-final result = await safeCall(() => remoteDataSource.fetchProduct(params));
-return result.fold(
-  (failure) => cached.isNotEmpty ? Right(cached) : Left(failure),
-  (remote) async {
-    await localDataSource.saveProducts(
-      remote,
-      replace: params.skip == 0, // clear on first page / refresh
-    );
-    return Right(remote);
-  },
-);
-```
+Reference: `lib/features/home/data/datasources/home_local_data_source.dart`.
 
 ## Pagination
 
-- Use `PaginationParams` from `lib/shared/models/pagination/pagination_params.dart` (what `home` uses).
-- Prefer not introducing a second params type; `PaginatedUseCase` exists but is unused — only adopt if you migrate consistently.
+- Use `PaginationParams` from `lib/shared/models/pagination/pagination_params.dart`; slice dummy lists with `skip`/`limit`.
 
 ## Anti-patterns
 
-- Returning `Either` from remote data sources (cart/profile stubs) — wrap in the repository instead.
-- Calling Dio directly from Cubits or pages.
-- Hardcoding base URLs outside Envied / FlavorConfig.
+- Adding Dio/http, endpoints, tokens, or interceptors.
+- Returning `Either` from data sources (cart/profile stubs do this — do not copy).
+- Putting dummy data in Cubits or pages.

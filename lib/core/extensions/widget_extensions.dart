@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 extension ContextExtensions on BuildContext {
-
   // theme
   ThemeData get theme => Theme.of(this);
   ColorScheme get colors => theme.colorScheme;
@@ -22,9 +21,6 @@ extension ContextExtensions on BuildContext {
   void pop<T>([T? result]) => Navigator.pop(this, result);
 
   Future<T?> push<T>(Widget page) {
-    return Navigator.push(
-      this,
-      MaterialPageRoute(builder: (_) => page),
-    );
+    return Navigator.push(this, MaterialPageRoute(builder: (_) => page));
   }
 }

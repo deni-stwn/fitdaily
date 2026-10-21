@@ -41,19 +41,19 @@ features/<feature>/
 
 | Layer | Allowed | Forbidden |
 |-------|---------|-----------|
-| domain | Dart, equatable, dartz, Failure | Flutter UI, Dio, Hive (prefer adapters outside domain when adding new cache; existing ProductEntity Hive annotations are a known exception) |
-| data | domain, Dio/ApiConsumer, Hive, storage | flutter_bloc, widgets |
-| presentation | domain use cases/entities, flutter_bloc, UI | Dio, Hive, data sources directly |
+| domain | Dart, equatable, dartz, Failure | Flutter UI, Hive, data sources |
+| data | domain, local dummy data (`rootBundle`, constants), Hive, storage | flutter_bloc, widgets, HTTP clients |
+| presentation | domain use cases/entities, flutter_bloc, UI | Hive, data sources directly |
 
 ## Adding a feature
 
 1. Ask approval, then `mason make feature --feature_name order --entity_name Order`
-2. Endpoint in `lib/core/constants/api_endpoints.dart`
+2. Dummy data in `<feature>_local_data_source.dart` (or `assets/dummy/*.json` + `DummyAssets`)
 3. `initOrder()` in `lib/core/di/injection_container.dart`
 4. Route in `lib/config/routing/app_router.dart` + `route_names.dart`
 5. Wire DI: `registerLazySingleton` for repos/DS/use cases; `registerFactory` for cubits
 
-## Known deviations (do not copy for new API features)
+## Known deviations (do not copy for new features)
 
 - `cart` / `profile`: stubs — incomplete wiring.
 - `theme`: local prefs without Either/`UseCase` base — acceptable only for simple local preferences.

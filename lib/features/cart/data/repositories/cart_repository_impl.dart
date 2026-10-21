@@ -3,15 +3,15 @@ import 'package:dartz/dartz.dart';
 import '../../../../core/errors/failures.dart';
 import '../../domain/entities/cart_entity.dart';
 import '../../domain/repositories/cart_repository.dart';
-import '../datasources/cart_remote_data_source.dart';
+import '../datasources/cart_local_data_source.dart';
 
 class CartRepositoryImpl implements CartRepository {
-  final CartRemoteDataSource remoteDataSource;
+  final CartLocalDataSource localDataSource;
 
-  CartRepositoryImpl(this.remoteDataSource);
+  CartRepositoryImpl(this.localDataSource);
 
   @override
   Future<Either<Failure, CartEntity>> getCart() async {
-    return await remoteDataSource.fetchCart();
+    return await localDataSource.fetchCart();
   }
 }

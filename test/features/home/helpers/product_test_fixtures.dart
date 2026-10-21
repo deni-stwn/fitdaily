@@ -3,10 +3,7 @@ import 'package:flutter_clean_architecture_template/features/home/data/models/pr
 import 'package:flutter_clean_architecture_template/features/home/data/models/product/product_model.dart';
 import 'package:flutter_clean_architecture_template/features/home/domain/entities/product/product_entity.dart';
 
-ProductModel createProductModel({
-  int id = 1,
-  String title = 'Test product',
-}) {
+ProductModel createProductModel({int id = 1, String title = 'Test product'}) {
   final now = DateTime(2024, 1, 1);
   return ProductModel(
     id: id,
@@ -27,12 +24,7 @@ ProductModel createProductModel({
     reviews: const [],
     returnPolicy: '',
     minimumOrderQuantity: 1,
-    meta: MetaModel(
-      createdAt: now,
-      updatedAt: now,
-      barcode: '',
-      qrCode: '',
-    ),
+    meta: MetaModel(createdAt: now, updatedAt: now, barcode: '', qrCode: ''),
     images: const [],
     thumbnail: '',
   );
@@ -41,5 +33,4 @@ ProductModel createProductModel({
 ProductEntity createProductEntity({
   int id = 1,
   String title = 'Test product',
-}) =>
-    createProductModel(id: id, title: title);
+}) => createProductModel(id: id, title: title);

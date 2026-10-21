@@ -15,8 +15,9 @@ class ThemeLocalDataSource {
 
   Future getTheme() async {
     final theme = sharedPreferencesService.getString(StorageKeys.themeKey);
-    return theme == 'dark'
-        ? ThemeEntity(type: ThemeType.dark)
-        : ThemeEntity(type: ThemeType.light);
+    // Design is dark-only, so dark is the default.
+    return theme == 'light'
+        ? ThemeEntity(type: ThemeType.light)
+        : ThemeEntity(type: ThemeType.dark);
   }
 }

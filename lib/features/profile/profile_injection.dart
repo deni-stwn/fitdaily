@@ -1,5 +1,5 @@
 import '../../core/di/injection_container.dart';
-import 'data/datasources/profile_remote_data_source.dart';
+import 'data/datasources/profile_local_data_source.dart';
 import 'data/repositories/profile_repository_impl.dart';
 import 'domain/repositories/profile_repository.dart';
 import 'domain/usecases/get_profile_usecase.dart';
@@ -18,7 +18,7 @@ void initProfile() {
   );
 
   // Data Sources
-  sl.registerLazySingleton<ProfileRemoteDataSource>(
-    () => ProfileRemoteDataSourceImpl(),
+  sl.registerLazySingleton<ProfileLocalDataSource>(
+    () => ProfileLocalDataSourceImpl(),
   );
 }

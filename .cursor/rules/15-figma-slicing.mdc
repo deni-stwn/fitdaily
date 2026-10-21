@@ -1,0 +1,20 @@
+---
+description: Figma → Flutter slicing rules (pixel-perfect, token-only, component reuse)
+alwaysApply: true
+---
+
+# Figma Slicing
+
+This project is **slicing-only** (no API). Before writing any UI code, read and follow:
+
+- @docs/ui/SLICING_RULES.md — mandatory rules and per-screen workflow
+- @docs/ui/COMPONENTS.md — component registry (reuse before creating; update after creating)
+- @docs/ui/SCREENS.md — screen list, Figma node IDs, target feature folder, status
+
+Short version:
+- Never guess sizes/colors/fonts from screenshots — use the Figma spec (`figma-code/<screen>/` cache first, then Figma MCP, else ask).
+- Never hardcode hex/font sizes — use `AppColors`, `AppTextStyles`, `AppSpacing`, `AppRadius` (`lib/config/theme/`).
+- Figma component instances → reuse the registered widget; new components go to `lib/shared/widgets/` with all Figma variants and get registered.
+- List reused/new components and assets **before** coding; update registry + screen status after.
+
+Commands: `/review <folder>` → `.claude/skills/slicing-review/SKILL.md` (plan + questions, no code); `/mulai` → `.claude/skills/slicing-mulai/SKILL.md`.

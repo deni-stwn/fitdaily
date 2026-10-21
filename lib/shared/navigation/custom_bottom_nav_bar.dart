@@ -32,14 +32,17 @@ class CustomBottomNavBar extends StatelessWidget {
           ),
         ],
       ),
-      child: Row(
-        children: List.generate(
-          tabs.length,
-          (index) => NavItemWidget(
-            tab: tabs[index],
-            isSelected: currentIndex == index,
-            onTap: () => onTap(index),
-          ).expanded(),
+      child: SafeArea(
+        top: false,
+        child: Row(
+          children: List.generate(
+            tabs.length,
+            (index) => NavItemWidget(
+              tab: tabs[index],
+              isSelected: currentIndex == index,
+              onTap: () => onTap(index),
+            ).expanded(),
+          ),
         ),
       ),
     );

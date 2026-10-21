@@ -5,6 +5,7 @@ import 'package:flutter_flavor/flutter_flavor.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'config/routing/app_router.dart';
+import 'config/theme/app_dimens.dart';
 import 'config/theme/app_theme.dart';
 import 'core/constants/app_strings.dart';
 import 'features/theme/domain/entities/theme_entity.dart';
@@ -26,7 +27,7 @@ class MyApp extends StatelessWidget {
             isDark = state.theme.type == ThemeType.dark;
           }
           return ScreenUtilInit(
-            designSize: const Size(360, 690),
+            designSize: AppDesign.frameSize,
             minTextAdapt: true,
             splitScreenMode: true,
             builder: (context, child) => FlavorBanner(

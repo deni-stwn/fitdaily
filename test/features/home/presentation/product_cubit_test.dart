@@ -40,10 +40,7 @@ void main() {
 
     expectLater(
       cubit.stream,
-      emitsInOrder([
-        isA<ProductLoading>(),
-        isA<ProductLoaded>(),
-      ]),
+      emitsInOrder([isA<ProductLoading>(), isA<ProductLoaded>()]),
     );
 
     await cubit.loadProducts(limit: 10);
@@ -54,14 +51,11 @@ void main() {
   });
 
   test('emits error when use case fails', () async {
-    repository.nextResult = const Left(ServerFailure('failed'));
+    repository.nextResult = const Left(UnexpectedFailure('failed'));
 
     expectLater(
       cubit.stream,
-      emitsInOrder([
-        isA<ProductLoading>(),
-        isA<ProductError>(),
-      ]),
+      emitsInOrder([isA<ProductLoading>(), isA<ProductError>()]),
     );
 
     await cubit.loadProducts(limit: 10);

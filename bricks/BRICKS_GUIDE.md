@@ -106,7 +106,7 @@ lib/features/order/
 │
 ├── data/
 │   ├── datasources/
-│   │   └── order_remote_data_source.dart    ← Abstract class + Implementation
+│   │   └── order_local_data_source.dart     ← Abstract class + Implementation (dummy data)
 │   ├── models/
 │   │   └── order_model.dart                  ← Extends OrderEntity + fromJson/toJson
 │   └── repositories/
@@ -142,30 +142,21 @@ After generation, you need **3 manual steps** to complete the feature:
 
 ---
 
-### Step 1 — Add the Endpoint
+### Step 1 — Add Dummy Data
 
-Open `lib/core/constants/api_endpoints.dart` and add:
+This project is slicing-only (no backend). Open the generated `order_local_data_source.dart` and replace the TODO with dummy data matching the design:
 
 ```dart
-class ApiEndpoints {
-  static String baseUrlDev = Env.baseUrl;
-  static String baseUrlProd = Env.baseUrl;
-  static String apiKey = Env.apiKey;
-  static const products = '/products';
-
-  // ← Add your new feature endpoint
-  static const orders = '/orders';
+@override
+Future<List<OrderModel>> fetchOrders() async {
+  await Future.delayed(const Duration(milliseconds: 500));
+  return const [
+    OrderModel(/* fields */),
+  ];
 }
 ```
 
-Then in the generated `order_remote_data_source.dart`, replace the TODO placeholder:
-```dart
-// Before (generated TODO):
-final response = await _dio.get(ApiEndpoints.products); // ← change this
-
-// After:
-final response = await _dio.get(ApiEndpoints.orders);
-```
+For larger data, put a JSON file in `assets/dummy/`, add its path to `lib/core/constants/dummy_assets.dart`, and load it with `rootBundle` (see `home_local_data_source.dart`).
 
 ---
 
@@ -289,11 +280,10 @@ mason make feature --feature_name notification --entity_name Notification
 **Post-generation:**
 
 ```dart
-// 1. api_endpoints.dart
-static const notifications = '/notifications';
+// 1. notification_local_data_source.dart
+return const [NotificationModel(/* fields */)];
 
-// 2. notification_remote_data_source.dart
-final response = await _dio.get(ApiEndpoints.notifications);
+// 2. (optional) JSON dummy: assets/dummy/notifications.json + DummyAssets.notifications
 
 // 3. injection_container.dart
 import '../../features/notification/notification_injection.dart';
@@ -320,7 +310,7 @@ mason make feature --feature_name medical_report --entity_name MedicalReport
 Files are generated with the `medical_report` prefix:
 ```
 lib/features/medical_report/
-├── data/datasources/medical_report_remote_data_source.dart
+├── data/datasources/medical_report_local_data_source.dart
 ├── data/models/medical_report_model.dart
 ├── domain/entities/medical_report_entity.dart
 ...
@@ -343,8 +333,8 @@ A: Yes, if the feature already exists. Mason will ask for confirmation before ov
 **Q: What if I made a typo in the name?**  
 A: Delete the feature folder manually and re-run the command.
 
-**Q: Can I add a Local Data Source?**  
-A: The current template generates Remote only (no pagination/Hive). Use `home_local_data_source.dart` in the `home` feature as a reference.
+**Q: Where does the data come from?**  
+A: The template generates a Local data source that returns dummy data (no backend). Use `home_local_data_source.dart` in the `home` feature as a reference for loading JSON from `assets/dummy/` with pagination.
 
 **Q: Is the generated Cubit import path correct?**  
 A: Yes — it should use five `../` segments to reach `lib/shared/mixin/` (same depth as `home`'s `ProductCubit`). If analysis fails on the mixin import after generation, compare against `lib/features/home/presentation/manager/product/product_cubit.dart`.

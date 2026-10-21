@@ -10,7 +10,7 @@ import 'core/di/injection_container.dart';
 import 'my_app.dart';
 import 'shared/wrappers/localization_wrapper.dart';
 
-Future<void> mainCommon({required String name, required String baseUrl}) async {
+Future<void> mainCommon({required String name}) async {
   WidgetsFlutterBinding.ensureInitialized();
   if (kDebugMode) {
     Bloc.observer = AppBlocObserver();
@@ -24,7 +24,6 @@ Future<void> mainCommon({required String name, required String baseUrl}) async {
   FlavorConfig(
     name: name,
     color: name == AppStrings.dev ? Colors.green : Colors.red,
-    variables: {AppStrings.baseUrl: baseUrl},
   );
 
   runApp(LocalizationWrapper(child: MyApp()));
@@ -36,10 +35,8 @@ Future<void> mainCommon({required String name, required String baseUrl}) async {
 // flutter run --flavor prod -t lib/main_prod.dart
 // to generate translations with keys
 // dart run easy_localization:generate --source-dir ./assets/translations -f keys -o locale_keys.g.dart
-// to generate env
-// dart run build_runner build
 // to generate feature
-// mason make feature --feature_name home --entity_name Home 
+// mason make feature --feature_name home --entity_name Home
 // to generate assets
 // dart pub global run flutter_gen:flutter_gen_command
 // or add Pub Cache\bin to PATH then: fluttergen

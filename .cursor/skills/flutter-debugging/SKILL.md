@@ -2,7 +2,7 @@
 name: flutter-debugging
 description: >-
   Debugs Flutter issues by layer (UI → Cubit → UseCase → Repository → DS)
-  using logs, states, and Dio failures. Use when fixing bugs, crashes, empty
+  using logs, states, and Failure results. Use when fixing bugs, crashes, empty
   screens, or incorrect emissions.
 ---
 
@@ -32,12 +32,11 @@ Capture exact steps, flavor, and whether offline/cache applies.
 
 ### Step 2 — Identify layer
 
-Trace: Page → Cubit state → UseCase → Repository (`safeCall`) → DataSource → Dio.
+Trace: Page → Cubit state → UseCase → Repository (`safeCall`) → Local DataSource (dummy data).
 
 ### Step 3 — Inspect evidence
 
 - Cubit current state (`Loading` stuck? `Error` message?)
-- Dio/LoggingInterceptor output (no secrets)
 - Hive cache emptiness for home-like flows
 - GetIt registration (missing `init*` or factory?)
 

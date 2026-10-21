@@ -66,7 +66,7 @@ flutter analyze
 
 ## Project-Specific Rules
 
-- Material app with custom font `TheYearofHandicrafts`
+- Material app with Figma fonts `InstrumentSans` / `InstrumentSerif`; tokens + rules in `docs/ui/SLICING_RULES.md`
 - Bottom tabs via shell + `CustomBottomNavBar`
 - No SnackBars as default error UX
 

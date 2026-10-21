@@ -5,8 +5,8 @@ alwaysApply: true
 
 # Project Overview
 
-Flutter Clean Architecture template (`flutter_clean_architecture_template`).
-Platforms in repo: **Android + iOS** only (no web/desktop folders).
+FitDaily — Flutter app sliced from Figma (`flutter_clean_architecture_template` package name).
+**Slicing-only: no API/backend.** Platforms: Android, iOS, macOS (+ linux/windows folders). Native flavors exist on Android only.
 
 ## Stack (actual)
 
@@ -14,19 +14,20 @@ Platforms in repo: **Android + iOS** only (no web/desktop folders).
 - State: **Cubit** (`flutter_bloc`) — not Bloc events, Riverpod, GetX, or Provider
 - DI: **GetIt** (`sl` in `lib/core/di/injection_container.dart`)
 - Navigation: **go_router** + `StatefulShellRoute.indexedStack`
-- Network: **Dio** via `ApiConsumer` / `DioConsumer`
+- Data: **local data sources with dummy data** (inline or `assets/dummy/*.json`). No Dio/HTTP.
 - Errors: **dartz** `Either<Failure, T>` + `safeCall`
-- Storage: Hive (home cache), SharedPreferences (theme/locale), SecureStorage (tokens ready)
+- Storage: SharedPreferences (theme/locale), Hive (initialized, unused), SecureStorage (registered, unused)
 - i18n: **easy_localization** + `LocaleKeys`
 - Flavors: `main_dev.dart` / `main_prod.dart` → `main_common.dart`
 
 ## Source of truth
 
-1. **Reference feature:** `lib/features/home/` (pagination, Hive cache fallback, `CancelableSafeCubitMixin`).
+1. **Reference feature:** `lib/features/home/` (dummy JSON local data source, pagination, `CancelableSafeCubitMixin`).
+   UI/slicing rules: `docs/ui/SLICING_RULES.md` (+ `COMPONENTS.md`, `SCREENS.md`).
 2. **Scaffold new features** with Mason after approval: `mason make feature` (see `bricks/BRICKS_GUIDE.md`).
 3. Do **not** copy stub patterns from `cart` / `profile` (UnimplementedError, manual `Cubit()` construction).
-4. `theme` is a known local-only exception (SharedPreferences; no Either) — do not generalize it to API features.
+4. `theme` is a known local-only exception (SharedPreferences; no Either).
 
 ## Do not invent
 
-Do not add Freezed, json_serializable, injectable, auto_route, Riverpod, GetX, or Firebase unless the user explicitly requests them.
+Do not add Dio/HTTP clients, Freezed, json_serializable, injectable, auto_route, Riverpod, GetX, or Firebase unless the user explicitly requests them.
