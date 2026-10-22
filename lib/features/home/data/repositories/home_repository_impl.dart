@@ -15,4 +15,12 @@ class HomeRepositoryImpl implements HomeRepository {
   Future<Either<Failure, HomeDashboard>> getDashboard() {
     return safeCall(() => localDataSource.fetchDashboard());
   }
+
+  @override
+  Future<Either<Failure, Unit>> clearNotifications() {
+    return safeCall(() async {
+      localDataSource.clearNotifications();
+      return unit;
+    });
+  }
 }

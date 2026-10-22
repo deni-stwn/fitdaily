@@ -11,14 +11,17 @@ import '../../config/theme/app_colors.dart';
 /// sharp), full at the bottom. Flutter has no progressive blur → stacked
 /// strips with increasing sigma. Max blur not in the export (tuned).
 class BottomFade extends StatelessWidget {
-  const BottomFade({super.key});
+  const BottomFade({super.key, this.height = 138});
+
+  /// Figma height (bottom variant 138; Personal Info instance 192).
+  final double height;
 
   static const _maxBlur = 10.0;
   static const _strips = 16;
 
   @override
   Widget build(BuildContext context) {
-    final height = 138.h;
+    final height = this.height.h;
     final strip = height / _strips;
 
     return IgnorePointer(

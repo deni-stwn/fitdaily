@@ -9,6 +9,10 @@ class HomeDashboardModel extends HomeDashboard {
     required super.steps,
     required super.calories,
     required super.heartRate,
+    required super.movingTime,
+    required super.mood,
+    required super.activity,
+    required super.sleep,
     required super.notifications,
   });
 
@@ -16,11 +20,17 @@ class HomeDashboardModel extends HomeDashboard {
     final user = json['user'] as Map<String, dynamic>;
     final quote = json['quote'] as Map<String, dynamic>;
     final heart = json['heart_rate'] as Map<String, dynamic>;
+    final mood = json['mood'] as Map<String, dynamic>;
+    final activity = json['activity'] as Map<String, dynamic>;
+    final sleep = json['sleep'] as Map<String, dynamic>;
+
+    List<double> doubles(Object? list) =>
+        (list! as List).map((e) => (e as num).toDouble()).toList();
 
     WeeklyMetric metric(Map<String, dynamic> m) => WeeklyMetric(
       value: m['value'] as int,
       goal: m['goal'] as int,
-      days: (m['days'] as List).map((e) => (e as num).toDouble()).toList(),
+      days: doubles(m['days']),
     );
 
     return HomeDashboardModel(
@@ -52,6 +62,28 @@ class HomeDashboardModel extends HomeDashboard {
               ),
               minutes: z['minutes'] as int,
               width: (z['width'] as num).toDouble(),
+            ),
+        ],
+      ),
+      movingTime: metric(json['moving_time'] as Map<String, dynamic>),
+      mood: MoodSummary(
+        label: mood['label'] as String,
+        message: mood['message'] as String,
+      ),
+      activity: HomeActivitySummary(
+        percent: activity['percent'] as int,
+        goalMinutes: activity['goal_minutes'] as int,
+        days: doubles(activity['days']),
+      ),
+      sleep: SleepSummary(
+        hours: sleep['hours'] as int,
+        minutes: sleep['minutes'] as int,
+        stages: [
+          for (final st in sleep['stages'] as List)
+            SleepStage(
+              x: ((st as List)[0] as num).toDouble(),
+              width: (st[1] as num).toDouble(),
+              level: st[2] as int,
             ),
         ],
       ),

@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 
+import '../../../../config/routing/route_names.dart';
 import '../../../../config/theme/app_colors.dart';
 import '../../../../config/theme/app_dimens.dart';
 import '../../../../core/di/injection_container.dart';
@@ -11,14 +13,17 @@ import '../../../../generated/locale_keys.g.dart';
 import '../../../../shared/widgets/app_background.dart';
 import '../../../../shared/widgets/app_icon_button.dart';
 import '../../../../shared/widgets/brand_effects.dart';
+import '../../../../shared/widgets/greeting_header.dart';
 import '../../../../shared/widgets/loading_widget.dart';
 import '../../../../shared/widgets/quote_card.dart';
 import '../../../../shared/widgets/weekly_bar_card.dart';
 import '../manager/home/home_cubit.dart';
 import '../manager/home/home_state.dart';
+import '../widgets/activity_overview_card.dart';
 import '../widgets/heart_rate_card.dart';
-import '../widgets/home_header.dart';
+import '../widgets/mood_card.dart';
 import '../widgets/notification_panel.dart';
+import '../widgets/sleep_monitoring_card.dart';
 
 /// Figma: Home (683:53154).
 class HomePage extends StatelessWidget {
@@ -77,7 +82,7 @@ class _HomeContent extends StatelessWidget {
             children: [
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 20.w),
-                child: HomeHeader(
+                child: GreetingHeader(
                   name: d.userName,
                   avatar: d.avatar,
                   trailing: AppIconButton(
@@ -113,6 +118,9 @@ class _HomeContent extends StatelessWidget {
                               value: '${d.steps.value}',
                               unit: LocaleKeys.home_steps.tr(context: context),
                               goal: '/${d.steps.goal}',
+                              onMore: () => context.push(
+                                '${RouteNames.kOverviewPage}/steps',
+                              ),
                             ),
                           ),
                           Expanded(
@@ -129,12 +137,53 @@ class _HomeContent extends StatelessWidget {
                                 context: context,
                               ),
                               goal: '/${d.calories.goal}',
+                              onMore: () => context.push(
+                                '${RouteNames.kOverviewPage}/calories',
+                              ),
                             ),
                           ),
                         ],
                       ),
                     ),
-                    HeartRateCard(summary: d.heartRate),
+                    HeartRateCard(
+                      summary: d.heartRate,
+                      onFullReport: () =>
+                          context.push(RouteNames.kHeartRateOverviewPage),
+                    ),
+                    // figma: Moving Time (208, hug) + Mood (208×234),
+                    // centred in the row.
+                    Row(
+                      spacing: AppSpacing.s2.w,
+                      children: [
+                        Expanded(
+                          child: WeeklyBarCard(
+                            icon: 'assets/icons/metric_moving_time.svg',
+                            title: LocaleKeys.home_moving_time.tr(
+                              context: context,
+                            ),
+                            color: AppColors.lime700,
+                            days: d.movingTime.days,
+                            dayLabels: _days,
+                            value: '${d.movingTime.value}',
+                            unit: LocaleKeys.home_minutes.tr(context: context),
+                            goal: LocaleKeys.home_goal_minutes.tr(
+                              context: context,
+                              args: ['${d.movingTime.goal}'],
+                            ),
+                          ),
+                        ),
+                        Expanded(child: MoodCard(mood: d.mood)),
+                      ],
+                    ),
+                    ActivityOverviewCard(
+                      activity: d.activity,
+                      dayLabels: _days,
+                      onSeeAll: () => context.go(RouteNames.kActivityPage),
+                    ),
+                    SleepMonitoringCard(
+                      sleep: d.sleep,
+                      onSeeAll: () => context.go(RouteNames.kActivityPage),
+                    ),
                   ],
                 ),
               ),

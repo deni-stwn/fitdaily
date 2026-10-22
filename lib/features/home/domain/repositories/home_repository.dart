@@ -5,4 +5,6 @@ import '../entities/home_dashboard.dart';
 
 abstract class HomeRepository {
   Future<Either<Failure, HomeDashboard>> getDashboard();
+
+  Future<Either<Failure, Unit>> clearNotifications();
 }

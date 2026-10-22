@@ -7,7 +7,16 @@ import '../../config/theme/app_text_styles.dart';
 import 'brand_effects.dart';
 
 /// Figma component "Button" (`84:348`) — `Variant` property.
-enum AppButtonVariant { primary, secondary, outline, tertiary }
+enum AppButtonVariant {
+  primary,
+  secondary,
+  outline,
+  tertiary,
+
+  /// Default with the `bgDanger` fill override (Training History "Delete"
+  /// confirm, small).
+  danger,
+}
 
 /// Figma component "Button" (`84:348`) — `sizes` property.
 enum AppButtonSize { large, medium, small }
@@ -26,6 +35,8 @@ class AppButton extends StatelessWidget {
     this.size = AppButtonSize.large,
     this.fullWidth = false,
     this.icon,
+    this.trailingIcon,
+    this.backgroundColor,
   });
 
   final String label;
@@ -38,6 +49,14 @@ class AppButton extends StatelessWidget {
 
   /// Optional 24×24 leading icon (e.g. goal chips), 8 before the label.
   final Widget? icon;
+
+  /// Optional 24×24 trailing icon (Figma "Trailing Icon", e.g. "Change
+  /// Picture" in Personal Info), 8 after the label.
+  final Widget? trailingIcon;
+
+  /// Fill override of the instance (e.g. "Delete Account" = secondary with
+  /// `bgDanger`, Privacy & Data 683:53746).
+  final Color? backgroundColor;
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +73,7 @@ class AppButton extends StatelessWidget {
           width: fullWidth ? double.infinity : null,
           child: CustomPaint(
             painter: InnerShadowPainter(
-              color: spec.background,
+              color: backgroundColor ?? spec.background,
               border: spec.border,
               radius: radius,
               shadows: spec.innerShadows,
@@ -62,7 +81,7 @@ class AppButton extends StatelessWidget {
             child: Stack(
               alignment: Alignment.center,
               children: [
-                if (icon == null)
+                if (icon == null && trailingIcon == null)
                   Padding(
                     padding: EdgeInsets.symmetric(
                       horizontal: spec.horizontalPadding.w,
@@ -80,13 +99,20 @@ class AppButton extends StatelessWidget {
                     child: Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        SizedBox(width: 24.w, height: 24.w, child: icon),
+                        if (icon != null)
+                          SizedBox(width: 24.w, height: 24.w, child: icon),
                         Padding(
                           padding: EdgeInsets.symmetric(
                             horizontal: AppSpacing.s2.w,
                           ),
                           child: Text(label, style: spec.labelStyle),
                         ),
+                        if (trailingIcon != null)
+                          SizedBox(
+                            width: 24.w,
+                            height: 24.w,
+                            child: trailingIcon,
+                          ),
                       ],
                     ),
                   ),
@@ -184,8 +210,28 @@ class _ButtonSpec {
           );
         case AppButtonVariant.primary:
         case AppButtonVariant.tertiary:
+        case AppButtonVariant.danger:
           break;
       }
+    }
+    // 29-devices-detail: "Unbind" (and "Forget Device" with
+    // `backgroundColor: AppColors.bgDanger`) — 40 high, padding 12 + label 8.
+    if (variant == AppButtonVariant.secondary && size == AppButtonSize.medium) {
+      return _ButtonSpec(
+        height: 40,
+        horizontalPadding: 12 + AppSpacing.s2, // figma: 703:12420
+        background: AppColors.white200,
+        labelStyle: AppTextStyles.bodySmallStrong,
+      );
+    }
+    // 27-training-history-delete: "Delete" (Default, fill bgDanger, flat).
+    if (variant == AppButtonVariant.danger && size == AppButtonSize.small) {
+      return _ButtonSpec(
+        height: 32,
+        horizontalPadding: AppSpacing.s2 + AppSpacing.s2,
+        background: AppColors.bgDanger,
+        labelStyle: AppTextStyles.bodySmallStrong,
+      );
     }
     // 18-home: "Full Report".
     if (variant == AppButtonVariant.secondary && size == AppButtonSize.small) {

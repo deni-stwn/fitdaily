@@ -1,0 +1,181 @@
+{
+ "fitness_condition": {
+  "value": "84",
+  "unit": "Bpm",
+  "range_value": "47-100",
+  "range_unit": "Bpm",
+  "points": [
+   {
+    "x": 0.0111,
+    "y": 0
+   },
+   {
+    "x": 0.0942,
+    "y": 10
+   },
+   {
+    "x": 0.1773,
+    "y": 20
+   },
+   {
+    "x": 0.2604,
+    "y": 10
+   },
+   {
+    "x": 0.3435,
+    "y": 0
+   },
+   {
+    "x": 0.4294,
+    "y": 21
+   },
+   {
+    "x": 0.5014,
+    "y": 40
+   },
+   {
+    "x": 0.5956,
+    "y": 18
+   },
+   {
+    "x": 0.6704,
+    "y": 0
+   },
+   {
+    "x": 0.8393,
+    "y": 0
+   },
+   {
+    "x": 0.8809,
+    "y": 26.5
+   },
+   {
+    "x": 0.928,
+    "y": 0
+   },
+   {
+    "x": 1.0,
+    "y": 0
+   }
+  ],
+  "x_labels": [
+   "4/6",
+   "13/6",
+   "22/6",
+   "1/7"
+  ],
+  "reference_value": 60,
+  "reference_start": 0.3435,
+  "level": {
+   "title": "Declining",
+   "caption": "01/07",
+   "segments": [
+    "veryPoor",
+    "fair",
+    "normal",
+    "good"
+   ],
+   "legend": [
+    "veryPoor",
+    "poor",
+    "fair",
+    "normal"
+   ],
+   "marker": 0.2109,
+   "explanation": "Your training load over the past 7 days is significantly lower than the past 28 days. Your athletic ability is at risk of declining.",
+   "recommendation": "To prevent a decline in athletic performance, start training. If you are preparing for a competition, gradually reduce training intensity and reach this condition 1–2 weeks before the event to ensure you have sufficient energy during the competition."
+  }
+ },
+ "vo2_max": {
+  "value": "84",
+  "unit": "Bpm",
+  "date": "12 July 2026",
+  "points": [
+   {
+    "x": 0.0111,
+    "y": 0
+   },
+   {
+    "x": 0.0942,
+    "y": 10
+   },
+   {
+    "x": 0.1773,
+    "y": 20
+   },
+   {
+    "x": 0.2604,
+    "y": 10
+   },
+   {
+    "x": 0.3435,
+    "y": 0
+   },
+   {
+    "x": 0.4294,
+    "y": 21
+   },
+   {
+    "x": 0.5014,
+    "y": 40
+   },
+   {
+    "x": 0.5956,
+    "y": 18
+   },
+   {
+    "x": 0.6704,
+    "y": 0
+   },
+   {
+    "x": 0.8393,
+    "y": 0
+   },
+   {
+    "x": 0.8809,
+    "y": 26.5
+   },
+   {
+    "x": 0.928,
+    "y": 0
+   },
+   {
+    "x": 1.0,
+    "y": 0
+   }
+  ],
+  "x_labels": [
+   "4/6",
+   "13/6",
+   "22/6",
+   "1/7"
+  ],
+  "reference_value": 60,
+  "reference_start": 0.3435,
+  "level": {
+   "title": "Good",
+   "caption": "Level",
+   "value": "0",
+   "unit": "ml/kg/min",
+   "segments": [
+    "veryPoor",
+    "poor",
+    "fair",
+    "normal",
+    "good",
+    "veryGood",
+    "superior"
+   ],
+   "legend": [
+    "veryPoor",
+    "poor",
+    "fair",
+    "normal",
+    "good",
+    "veryGood",
+    "superior"
+   ],
+   "marker": 0.2109
+  }
+ }
+}

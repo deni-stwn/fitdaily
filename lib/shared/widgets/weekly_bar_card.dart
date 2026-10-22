@@ -69,32 +69,7 @@ class WeeklyBarCard extends StatelessWidget {
               ),
             ],
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              for (var i = 0; i < days.length; i++)
-                Column(
-                  spacing: AppSpacing.s1.h,
-                  children: [
-                    _DayBar(fill: days[i], color: color),
-                    // Labels are wider than the 8px column (figma: centred).
-                    SizedBox(
-                      width: 8.w,
-                      height: 16.h,
-                      child: OverflowBox(
-                        maxWidth: 24.w,
-                        maxHeight: 16.h,
-                        child: Text(
-                          dayLabels[i],
-                          textAlign: TextAlign.center,
-                          style: tertiary,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-            ],
-          ),
+          WeeklyBarChart(days: days, dayLabels: dayLabels, color: color),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             spacing: AppSpacing.s2.h,
@@ -112,6 +87,58 @@ class WeeklyBarCard extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+}
+
+/// The 7 daily bars of *Graph · Small Chart* (track 8×50 `bgSecondary`,
+/// fill [color] with 1.5px `bg` border, day label below), spread with
+/// `spaceBetween` over the available width. Also used by Home
+/// "Activity Overview" (165 wide).
+class WeeklyBarChart extends StatelessWidget {
+  const WeeklyBarChart({
+    super.key,
+    required this.days,
+    required this.dayLabels,
+    required this.color,
+  });
+
+  /// Fill heights in Figma px (track 50).
+  final List<double> days;
+  final List<String> dayLabels;
+  final Color color;
+
+  @override
+  Widget build(BuildContext context) {
+    final tertiary = AppTextStyles.bodySmall.copyWith(
+      color: AppColors.textTertiary,
+    );
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        for (var i = 0; i < days.length; i++)
+          Column(
+            mainAxisSize: MainAxisSize.min,
+            spacing: AppSpacing.s1.h,
+            children: [
+              _DayBar(fill: days[i], color: color),
+              // Labels are wider than the 8px column (figma: centred).
+              SizedBox(
+                width: 8.w,
+                height: 16.h,
+                child: OverflowBox(
+                  maxWidth: 24.w,
+                  maxHeight: 16.h,
+                  child: Text(
+                    dayLabels[i],
+                    textAlign: TextAlign.center,
+                    style: tertiary,
+                  ),
+                ),
+              ),
+            ],
+          ),
+      ],
     );
   }
 }

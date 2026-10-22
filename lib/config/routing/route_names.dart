@@ -16,8 +16,24 @@ class RouteNames {
   static const kUserSetupStressPage = '/user-setup/stress';
   static const kUserSetupConsistentPage = '/user-setup/consistent';
   static const kDeviceSetupPage = '/device-setup';
+  static const kOverviewPage = '/overview'; // + /steps | /calories
+  static const kOverviewHistoryPage = '/overview/history';
+  static const kHeartRateOverviewPage = '/overview/heart-rate';
   static const kRootPage = '/';
   static const kActivityPage = '/activity';
+  static const kStartTrainingPage = '/start-training';
+  static const kTrainingHistoryPage = '/training-history';
+  static const kTrainingIndexPage = '/training-index';
+  static const kFitnessConditionPage = '/fitness-condition';
+  static const kVo2MaxPage = '/vo2-max';
   static const kDevicesPage = '/devices';
+  static const kDevicesSearchPage = '/devices/search';
+  static const kDevicesFaqPage = '/devices/faq';
   static const kGoalsPage = '/goals';
+  static const kSettingsPage = '/settings'; // overlay panel
+  static const kSettingsPersonalInfoPage = '/settings/personal-info';
+  static const kSettingsHealthPage = '/settings/health';
+  static const kSettingsNotificationsPage = '/settings/notifications';
+  static const kSettingsPrivacyPage = '/settings/privacy';
+  static const kSettingsAppPage = '/settings/app';
 }

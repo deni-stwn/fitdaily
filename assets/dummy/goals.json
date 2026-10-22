@@ -1,0 +1,32 @@
+{
+    "user": {
+        "name": "Brian",
+        "avatar": "assets/images/avatar_brian.png"
+    },
+    "progress": {
+        "percent": 67,
+        "fill": 0.5189
+    },
+    "weekly": {
+        "percent": 80,
+        "bars": [50, 50, 50, 50, 50, 50, 20]
+    },
+    "total": {
+        "percent": 50,
+        "bars": [50, 50, 50, 25, 0, 0, 0]
+    },
+    "goals": [
+        {"name": "Protein", "tracking": "95/95 gram", "status": "complete"},
+        {"name": "Step", "tracking": "2500 Step", "status": "complete"},
+        {"name": "Cardio", "tracking": "100 Bpm", "status": "inProgress"},
+        {"name": "Water", "tracking": "1.3L / 2 L", "status": "incomplete"},
+        {"name": "Sleep", "tracking": "2h 36m / 8h", "status": "inProgress"}
+    ],
+    "targets": {
+        "steps": ["2500 Step", "5000 Step", "10000 Step"],
+        "water": ["1 L", "2 L", "3 L"],
+        "calories": ["300 Kcal", "500 Kcal", "800 Kcal"],
+        "sleep": ["6h", "7h", "8h"],
+        "stress": ["10 min", "15 min", "30 min"]
+    }
+}

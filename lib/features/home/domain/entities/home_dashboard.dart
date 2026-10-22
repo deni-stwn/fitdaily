@@ -1,5 +1,9 @@
 import 'package:equatable/equatable.dart';
 
+import '../../../../shared/models/heart_rate.dart';
+
+export '../../../../shared/models/heart_rate.dart';
+
 /// Everything shown on Home (683:53154) and its notification panel
 /// (683:54696).
 class HomeDashboard extends Equatable {
@@ -10,6 +14,10 @@ class HomeDashboard extends Equatable {
     required this.steps,
     required this.calories,
     required this.heartRate,
+    required this.movingTime,
+    required this.mood,
+    required this.activity,
+    required this.sleep,
     required this.notifications,
   });
 
@@ -21,6 +29,10 @@ class HomeDashboard extends Equatable {
   final WeeklyMetric steps;
   final WeeklyMetric calories;
   final HeartRateSummary heartRate;
+  final WeeklyMetric movingTime;
+  final MoodSummary mood;
+  final HomeActivitySummary activity;
+  final SleepSummary sleep;
   final List<HomeNotification> notifications;
 
   HomeDashboard copyWith({List<HomeNotification>? notifications}) =>
@@ -31,6 +43,10 @@ class HomeDashboard extends Equatable {
         steps: steps,
         calories: calories,
         heartRate: heartRate,
+        movingTime: movingTime,
+        mood: mood,
+        activity: activity,
+        sleep: sleep,
         notifications: notifications ?? this.notifications,
       );
 
@@ -42,6 +58,10 @@ class HomeDashboard extends Equatable {
     steps,
     calories,
     heartRate,
+    movingTime,
+    mood,
+    activity,
+    sleep,
     notifications,
   ];
 }
@@ -72,38 +92,6 @@ class WeeklyMetric extends Equatable {
   List<Object?> get props => [value, goal, days];
 }
 
-/// One bar of the heart-rate candle chart, in Figma chart coordinates
-/// (357 × 111.56 area).
-class ChartBar extends Equatable {
-  const ChartBar({required this.left, required this.top, required this.height});
-
-  final double left;
-  final double top;
-  final double height;
-
-  @override
-  List<Object?> get props => [left, top, height];
-}
-
-enum HeartZoneType { light, intensive, aerobic, anaerobic, vo2max }
-
-class HeartZone extends Equatable {
-  const HeartZone({
-    required this.type,
-    required this.minutes,
-    required this.width,
-  });
-
-  final HeartZoneType type;
-  final int minutes;
-
-  /// Segment width in the zone bar (Figma px of 384, measured).
-  final double width;
-
-  @override
-  List<Object?> get props => [type, minutes, width];
-}
-
 class HeartRateSummary extends Equatable {
   const HeartRateSummary({
     required this.current,
@@ -121,6 +109,63 @@ class HeartRateSummary extends Equatable {
 
   @override
   List<Object?> get props => [current, min, max, bars, zones];
+}
+
+/// Home "Mood" card: label (e.g. "Good") and caption.
+class MoodSummary extends Equatable {
+  const MoodSummary({required this.label, required this.message});
+
+  final String label;
+  final String message;
+
+  @override
+  List<Object?> get props => [label, message];
+}
+
+/// Home "Activity Overview" card: goal progress in percent, goal in
+/// minutes and 7 daily bar fills (Figma px, track height 50).
+class HomeActivitySummary extends Equatable {
+  const HomeActivitySummary({
+    required this.percent,
+    required this.goalMinutes,
+    required this.days,
+  });
+
+  final int percent;
+  final int goalMinutes;
+  final List<double> days;
+
+  @override
+  List<Object?> get props => [percent, goalMinutes, days];
+}
+
+/// Home "Sleep Monitoring" card: duration and the sleep-stage steps.
+class SleepSummary extends Equatable {
+  const SleepSummary({
+    required this.hours,
+    required this.minutes,
+    required this.stages,
+  });
+
+  final int hours;
+  final int minutes;
+  final List<SleepStage> stages;
+
+  @override
+  List<Object?> get props => [hours, minutes, stages];
+}
+
+/// One horizontal step of the sleep chart, in Figma px of the 248×88 chart:
+/// [x] start, [width], [level] 0 (top, -14) … 3 (bottom, 88), 34 apart.
+class SleepStage extends Equatable {
+  const SleepStage({required this.x, required this.width, required this.level});
+
+  final double x;
+  final double width;
+  final int level;
+
+  @override
+  List<Object?> get props => [x, width, level];
 }
 
 enum HomeNotificationType { calories, steps, movingTime, sleep, stress }

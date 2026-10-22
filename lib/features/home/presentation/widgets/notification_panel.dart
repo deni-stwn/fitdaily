@@ -12,10 +12,10 @@ import '../../../../config/theme/app_text_styles.dart';
 import '../../../../generated/locale_keys.g.dart';
 import '../../../../shared/widgets/app_button.dart';
 import '../../../../shared/widgets/app_icon_button.dart';
+import '../../../../shared/widgets/greeting_header.dart';
 import '../../domain/entities/home_dashboard.dart';
 import '../manager/home/home_cubit.dart';
 import '../manager/home/home_state.dart';
-import 'home_header.dart';
 
 /// Opens the Figma *Title Bar · Notification* panel (683:54696) over a
 /// blurred Home. Blur/dim values are not in the export → approximated.
@@ -76,10 +76,12 @@ class NotificationPanel extends StatelessWidget {
       builder: (context, state) {
         if (state is! HomeLoaded) return const SizedBox.shrink();
         final dashboard = state.dashboard;
+        final empty = dashboard.notifications.isEmpty;
         return Material(
           type: MaterialType.transparency,
           child: Container(
-            height: 697.h,
+            // Empty state (no design) hugs its content.
+            height: empty ? null : 697.h,
             padding: EdgeInsets.all(12.w),
             decoration: BoxDecoration(
               color: AppColors.bg,
@@ -87,8 +89,9 @@ class NotificationPanel extends StatelessWidget {
               border: Border.all(color: AppColors.border),
             ),
             child: Column(
+              mainAxisSize: MainAxisSize.min,
               children: [
-                HomeHeader(
+                GreetingHeader(
                   name: dashboard.userName,
                   avatar: dashboard.avatar,
                   trailing: AppIconButton(
@@ -98,30 +101,88 @@ class NotificationPanel extends StatelessWidget {
                   ),
                 ),
                 SizedBox(height: AppSpacing.s4.h),
-                Expanded(
-                  child: ListView.separated(
-                    padding: EdgeInsets.zero,
-                    itemCount: dashboard.notifications.length,
-                    separatorBuilder: (_, _) => SizedBox(height: 4.h),
-                    itemBuilder: (_, i) =>
-                        _NotificationItem(dashboard.notifications[i]),
+                if (empty)
+                  const _EmptyNotifications()
+                else ...[
+                  Expanded(
+                    child: ListView.separated(
+                      padding: EdgeInsets.zero,
+                      itemCount: dashboard.notifications.length,
+                      separatorBuilder: (_, _) => SizedBox(height: 4.h),
+                      itemBuilder: (_, i) =>
+                          _NotificationItem(dashboard.notifications[i]),
+                    ),
                   ),
-                ),
-                AppButton(
-                  label: LocaleKeys.home_clear_notifications.tr(
-                    context: context,
+                  AppButton(
+                    label: LocaleKeys.home_clear_notifications.tr(
+                      context: context,
+                    ),
+                    fullWidth: true,
+                    onPressed: () {
+                      context.read<HomeCubit>().clearNotifications();
+                      Navigator.of(context).pop();
+                    },
                   ),
-                  fullWidth: true,
-                  onPressed: () {
-                    context.read<HomeCubit>().clearNotifications();
-                    Navigator.of(context).pop();
-                  },
-                ),
+                ],
               ],
             ),
           ),
         );
       },
+    );
+  }
+}
+
+/// No notifications (not in the design): bell in a `bgSecondary` circle,
+/// title (`bodyMedium`) and hint (`bodySmall` tertiary), centred.
+class _EmptyNotifications extends StatelessWidget {
+  const _EmptyNotifications();
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.fromLTRB(
+        AppSpacing.s4.w,
+        AppSpacing.s4.h,
+        AppSpacing.s4.w,
+        40.h,
+      ),
+      child: Column(
+        spacing: AppSpacing.s2.h,
+        children: [
+          Container(
+            width: 64.w,
+            height: 64.w,
+            alignment: Alignment.center,
+            decoration: const BoxDecoration(
+              color: AppColors.bgSecondary,
+              shape: BoxShape.circle,
+            ),
+            child: SvgPicture.asset(
+              'assets/icons/bell.svg',
+              width: 28.w,
+              height: 28.w,
+              colorFilter: const ColorFilter.mode(
+                AppColors.iconTertiary,
+                BlendMode.srcIn,
+              ),
+            ),
+          ),
+          SizedBox(height: AppSpacing.s1.h),
+          Text(
+            LocaleKeys.home_no_notifications.tr(context: context),
+            textAlign: TextAlign.center,
+            style: AppTextStyles.bodyMedium,
+          ),
+          Text(
+            LocaleKeys.home_no_notifications_desc.tr(context: context),
+            textAlign: TextAlign.center,
+            style: AppTextStyles.bodySmall.copyWith(
+              color: AppColors.textTertiary,
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

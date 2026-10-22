@@ -9,9 +9,9 @@ import '../../../../config/theme/app_text_styles.dart';
 import '../../../../generated/locale_keys.g.dart';
 import '../../../../shared/widgets/app_button.dart';
 import '../../../../shared/widgets/charts/candle_chart.dart';
-import '../../../../shared/widgets/charts/legend_item.dart';
-import '../../../../shared/widgets/charts/segmented_progress_bar.dart';
+import '../../../../shared/widgets/charts/heart_zone_breakdown.dart';
 import '../../../../shared/widgets/gradient_border_card.dart';
+import '../../../../shared/widgets/value_unit.dart';
 import '../../domain/entities/home_dashboard.dart';
 
 /// Home "Heart rate" card (figma: 683:53154).
@@ -20,22 +20,6 @@ class HeartRateCard extends StatelessWidget {
 
   final HeartRateSummary summary;
   final VoidCallback? onFullReport;
-
-  static Color zoneColor(HeartZoneType type) => switch (type) {
-    HeartZoneType.light => AppColors.zoneLight,
-    HeartZoneType.intensive => AppColors.zoneIntensive,
-    HeartZoneType.aerobic => AppColors.zoneAerobic,
-    HeartZoneType.anaerobic => AppColors.zoneAnaerobic,
-    HeartZoneType.vo2max => AppColors.zoneVo2Max,
-  };
-
-  static String zoneLabelKey(HeartZoneType type) => switch (type) {
-    HeartZoneType.light => LocaleKeys.home_zone_light,
-    HeartZoneType.intensive => LocaleKeys.home_zone_intensive,
-    HeartZoneType.aerobic => LocaleKeys.home_zone_aerobic,
-    HeartZoneType.anaerobic => LocaleKeys.home_zone_anaerobic,
-    HeartZoneType.vo2max => LocaleKeys.home_zone_vo2max,
-  };
 
   @override
   Widget build(BuildContext context) {
@@ -74,8 +58,8 @@ class HeartRateCard extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  _BpmValue(value: '${summary.current}', unit: bpm),
-                  _BpmValue(value: '${summary.min}-${summary.max}', unit: bpm),
+                  ValueUnit(value: '${summary.current}', unit: bpm),
+                  ValueUnit(value: '${summary.min}-${summary.max}', unit: bpm),
                 ],
               ),
               CandleChart(
@@ -85,54 +69,11 @@ class HeartRateCard extends StatelessWidget {
                     (left: b.left, top: b.top, height: b.height),
                 ],
               ),
-              SegmentedProgressBar(
-                segments: [
-                  for (final z in summary.zones)
-                    (width: z.width, color: zoneColor(z.type)),
-                ],
-              ),
-            ],
-          ),
-          Row(
-            spacing: AppSpacing.s3.w,
-            children: [
-              for (final z in summary.zones)
-                Expanded(
-                  child: LegendItem(
-                    color: zoneColor(z.type),
-                    label: zoneLabelKey(z.type).tr(context: context),
-                    value: '${z.minutes}',
-                    unit: LocaleKeys.home_mins.tr(context: context),
-                  ),
-                ),
+              HeartZoneBreakdown(zones: summary.zones),
             ],
           ),
         ],
       ),
-    );
-  }
-}
-
-class _BpmValue extends StatelessWidget {
-  const _BpmValue({required this.value, required this.unit});
-
-  final String value;
-  final String unit;
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.end, // figma
-      spacing: AppSpacing.s1.w,
-      children: [
-        Text(value, style: AppTextStyles.headingMedium),
-        Text(
-          unit,
-          style: AppTextStyles.bodySmall.copyWith(
-            color: AppColors.textTertiary,
-          ),
-        ),
-      ],
     );
   }
 }

@@ -14,6 +14,14 @@ const _dashboard = HomeDashboard(
   steps: WeeklyMetric(value: 1, goal: 2, days: []),
   calories: WeeklyMetric(value: 1, goal: 2, days: []),
   heartRate: HeartRateSummary(current: 1, min: 0, max: 2, bars: [], zones: []),
+  movingTime: WeeklyMetric(value: 1, goal: 2, days: []),
+  mood: MoodSummary(label: 'Good', message: 'm'),
+  activity: HomeActivitySummary(percent: 78, goalMinutes: 45, days: []),
+  sleep: SleepSummary(
+    hours: 7,
+    minutes: 39,
+    stages: [SleepStage(x: 0, width: 1, level: 0)],
+  ),
   notifications: [
     HomeNotification(
       type: HomeNotificationType.steps,
@@ -30,6 +38,9 @@ class _Repo implements HomeRepository {
 
   @override
   Future<Either<Failure, HomeDashboard>> getDashboard() async => result;
+
+  @override
+  Future<Either<Failure, Unit>> clearNotifications() async => const Right(unit);
 }
 
 void main() {

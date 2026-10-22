@@ -2,8 +2,12 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get_it/get_it.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
+import '../../features/activity/activity_injection.dart';
 import '../../features/devices/devices_injection.dart';
+import '../../features/goals/goals_injection.dart';
 import '../../features/home/home_injection.dart';
+import '../../features/settings/settings_injection.dart';
+import '../../features/stats/stats_injection.dart';
 import '../../features/theme/theme_injection.dart';
 import '../../features/user_setup/user_setup_injection.dart';
 import '../localization/localization_service.dart';
@@ -36,4 +40,8 @@ Future<void> initCore() async {
   initHome();
   initUserSetup();
   initDevices();
+  initStats();
+  initActivity();
+  initGoals();
+  initSettings();
 }

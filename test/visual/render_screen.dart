@@ -9,10 +9,18 @@ import 'package:flutter_clean_architecture_template/config/routing/app_router.da
 import 'package:flutter_clean_architecture_template/config/theme/app_dimens.dart';
 import 'package:flutter_clean_architecture_template/config/theme/app_theme.dart';
 import 'package:flutter_clean_architecture_template/core/di/injection_container.dart';
+import 'package:flutter_clean_architecture_template/features/activity/activity_injection.dart';
+import 'package:flutter_clean_architecture_template/features/activity/presentation/manager/activity/activity_cubit.dart';
 import 'package:flutter_clean_architecture_template/features/devices/devices_injection.dart';
+import 'package:flutter_clean_architecture_template/features/goals/goals_injection.dart';
+import 'package:flutter_clean_architecture_template/features/goals/presentation/manager/goals/goals_cubit.dart';
+import 'package:flutter_clean_architecture_template/features/devices/presentation/manager/device/device_cubit.dart';
 import 'package:flutter_clean_architecture_template/features/home/home_injection.dart';
 import 'package:flutter_clean_architecture_template/features/home/presentation/manager/home/home_cubit.dart';
-import 'package:flutter_clean_architecture_template/features/devices/presentation/manager/device/device_cubit.dart';
+import 'package:flutter_clean_architecture_template/features/settings/presentation/manager/settings/settings_cubit.dart';
+import 'package:flutter_clean_architecture_template/features/settings/settings_injection.dart';
+import 'package:flutter_clean_architecture_template/features/stats/presentation/manager/overview/overview_cubit.dart';
+import 'package:flutter_clean_architecture_template/features/stats/stats_injection.dart';
 import 'package:flutter_clean_architecture_template/features/user_setup/presentation/manager/user_setup_cubit.dart';
 import 'package:flutter_clean_architecture_template/features/user_setup/user_setup_injection.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -28,6 +36,10 @@ Future<void> setUpVisual() async {
   if (!sl.isRegistered<UserSetupCubit>()) initUserSetup();
   if (!sl.isRegistered<DeviceCubit>()) initDevices();
   if (!sl.isRegistered<HomeCubit>()) initHome();
+  if (!sl.isRegistered<OverviewCubit>()) initStats();
+  if (!sl.isRegistered<ActivityCubit>()) initActivity();
+  if (!sl.isRegistered<GoalsCubit>()) initGoals();
+  if (!sl.isRegistered<SettingsCubit>()) initSettings();
   for (final (family, files) in [
     (
       'InstrumentSans',
