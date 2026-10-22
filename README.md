@@ -2,7 +2,7 @@
 
 # 🏗️ Flutter Clean Architecture Template
 
-**A production-ready Flutter starter — feature-first Clean Architecture, scalable by design.**
+**-A production-ready Flutter starter — feature-first Clean Architecture, scalable by design.**
 
 [![Flutter](https://img.shields.io/badge/Flutter-3.11+-02569B?logo=flutter&logoColor=white)](https://flutter.dev)
 [![Dart](https://img.shields.io/badge/Dart-3.11+-0175C2?logo=dart&logoColor=white)](https://dart.dev)
