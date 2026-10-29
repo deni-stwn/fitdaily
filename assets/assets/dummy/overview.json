@@ -1,0 +1,668 @@
+{
+ "steps": {
+  "periods": {
+   "day": {
+    "title": "Sunday",
+    "date": "12 July 2026",
+    "caption": "of 1M Steps",
+    "selected": 6,
+    "bars": [
+     {
+      "label": "Sun",
+      "height": 22.5,
+      "value": "212.7k",
+      "progress": 0.2127
+     },
+     {
+      "label": "Mon",
+      "height": 58,
+      "value": "548.3k",
+      "progress": 0.5483
+     },
+     {
+      "label": "Tue",
+      "height": 58,
+      "value": "548.3k",
+      "progress": 0.5483
+     },
+     {
+      "label": "Wed",
+      "height": 86,
+      "value": "813k",
+      "progress": 0.813
+     },
+     {
+      "label": "Thu",
+      "height": 59,
+      "value": "557.7k",
+      "progress": 0.5577
+     },
+     {
+      "label": "Fri",
+      "height": 69,
+      "value": "652.3k",
+      "progress": 0.6523
+     },
+     {
+      "label": "Sat",
+      "height": 34,
+      "value": "321.4k",
+      "progress": 0.3214
+     }
+    ]
+   },
+   "month": {
+    "title": "Sunday",
+    "date": "12 July 2026",
+    "caption": "of 1M Steps",
+    "selected": 3,
+    "bars": [
+     {
+      "label": "1st week",
+      "height": 86,
+      "value": "321.4k",
+      "progress": 0.3214
+     },
+     {
+      "label": "2nd week",
+      "height": 59,
+      "value": "220.5k",
+      "progress": 0.2205
+     },
+     {
+      "label": "3rd week",
+      "height": 69,
+      "value": "257.9k",
+      "progress": 0.2579
+     },
+     {
+      "label": "4th week",
+      "height": 86,
+      "value": "321.4k",
+      "progress": 0.3214
+     }
+    ]
+   },
+   "year": {
+    "title": "Sunday",
+    "date": "12 July 2026",
+    "caption": "of 1M Steps",
+    "selected": 11,
+    "bars": [
+     {
+      "label": "jan",
+      "height": 86,
+      "value": "321.4k",
+      "progress": 0.3214
+     },
+     {
+      "label": "Feb",
+      "height": 34,
+      "value": "127.1k",
+      "progress": 0.1271
+     },
+     {
+      "label": "Mar",
+      "height": 70,
+      "value": "261.6k",
+      "progress": 0.2616
+     },
+     {
+      "label": "Apr",
+      "height": 56,
+      "value": "209.3k",
+      "progress": 0.2093
+     },
+     {
+      "label": "Mei",
+      "height": 28,
+      "value": "104.6k",
+      "progress": 0.1046
+     },
+     {
+      "label": "Jun",
+      "height": 76,
+      "value": "284k",
+      "progress": 0.284
+     },
+     {
+      "label": "Jul",
+      "height": 35,
+      "value": "130.8k",
+      "progress": 0.1308
+     },
+     {
+      "label": "Aug",
+      "height": 60,
+      "value": "224.2k",
+      "progress": 0.2242
+     },
+     {
+      "label": "Sep",
+      "height": 66,
+      "value": "246.7k",
+      "progress": 0.2467
+     },
+     {
+      "label": "Oct",
+      "height": 59,
+      "value": "220.5k",
+      "progress": 0.2205
+     },
+     {
+      "label": "Nov",
+      "height": 32,
+      "value": "119.6k",
+      "progress": 0.1196
+     },
+     {
+      "label": "Dec",
+      "height": 86,
+      "value": "321.4k",
+      "progress": 0.3214
+     }
+    ]
+   }
+  },
+  "stats": [
+   {
+    "icon": "assets/icons/stat_clock.svg",
+    "value": "120",
+    "unit": "Min"
+   },
+   {
+    "icon": "assets/icons/stat_map.svg",
+    "value": "4.2",
+    "unit": "km"
+   },
+   {
+    "icon": "assets/icons/stat_calories.svg",
+    "value": "491",
+    "unit": "kcal"
+   }
+  ],
+  "history": [
+   {
+    "value": "3.291",
+    "caption": "of 5000 step",
+    "date": "Saturday, 12 January 2024"
+   },
+   {
+    "value": "4.120",
+    "caption": "of 5000 step",
+    "date": "Friday, 11 January 2024"
+   },
+   {
+    "value": "2.875",
+    "caption": "of 5000 step",
+    "date": "Thursday, 10 January 2024"
+   },
+   {
+    "value": "5.012",
+    "caption": "of 5000 step",
+    "date": "Wednesday, 9 January 2024"
+   }
+  ]
+ },
+ "calories": {
+  "periods": {
+   "day": {
+    "title": "Sunday",
+    "date": "12 July 2026",
+    "caption": "of 180k Kcal",
+    "selected": 6,
+    "bars": [
+     {
+      "label": "Sun",
+      "height": 22.5,
+      "value": "66.2k",
+      "progress": 0.3676
+     },
+     {
+      "label": "Mon",
+      "height": 58,
+      "value": "170.6k",
+      "progress": 0.9477
+     },
+     {
+      "label": "Tue",
+      "height": 58,
+      "value": "170.6k",
+      "progress": 0.9477
+     },
+     {
+      "label": "Wed",
+      "height": 86,
+      "value": "252.9k",
+      "progress": 1.4052
+     },
+     {
+      "label": "Thu",
+      "height": 59,
+      "value": "173.5k",
+      "progress": 0.9641
+     },
+     {
+      "label": "Fri",
+      "height": 69,
+      "value": "202.9k",
+      "progress": 1.1275
+     },
+     {
+      "label": "Sat",
+      "height": 34,
+      "value": "100k",
+      "progress": 0.5556
+     }
+    ]
+   },
+   "month": {
+    "title": "Sunday",
+    "date": "12 July 2026",
+    "caption": "of 180k Kcal",
+    "selected": 3,
+    "bars": [
+     {
+      "label": "1st week",
+      "height": 86,
+      "value": "100k",
+      "progress": 0.5556
+     },
+     {
+      "label": "2nd week",
+      "height": 59,
+      "value": "68.6k",
+      "progress": 0.3811
+     },
+     {
+      "label": "3rd week",
+      "height": 69,
+      "value": "80.2k",
+      "progress": 0.4457
+     },
+     {
+      "label": "4th week",
+      "height": 86,
+      "value": "100k",
+      "progress": 0.5556
+     }
+    ]
+   },
+   "year": {
+    "title": "Sunday",
+    "date": "12 July 2026",
+    "caption": "of 180k Kcal",
+    "selected": 11,
+    "bars": [
+     {
+      "label": "jan",
+      "height": 86,
+      "value": "100k",
+      "progress": 0.5556
+     },
+     {
+      "label": "Feb",
+      "height": 34,
+      "value": "39.5k",
+      "progress": 0.2196
+     },
+     {
+      "label": "Mar",
+      "height": 70,
+      "value": "81.4k",
+      "progress": 0.4522
+     },
+     {
+      "label": "Apr",
+      "height": 56,
+      "value": "65.1k",
+      "progress": 0.3618
+     },
+     {
+      "label": "Mei",
+      "height": 28,
+      "value": "32.6k",
+      "progress": 0.1809
+     },
+     {
+      "label": "Jun",
+      "height": 76,
+      "value": "88.4k",
+      "progress": 0.491
+     },
+     {
+      "label": "Jul",
+      "height": 35,
+      "value": "40.7k",
+      "progress": 0.2261
+     },
+     {
+      "label": "Aug",
+      "height": 60,
+      "value": "69.8k",
+      "progress": 0.3876
+     },
+     {
+      "label": "Sep",
+      "height": 66,
+      "value": "76.7k",
+      "progress": 0.4264
+     },
+     {
+      "label": "Oct",
+      "height": 59,
+      "value": "68.6k",
+      "progress": 0.3811
+     },
+     {
+      "label": "Nov",
+      "height": 32,
+      "value": "37.2k",
+      "progress": 0.2067
+     },
+     {
+      "label": "Dec",
+      "height": 86,
+      "value": "100k",
+      "progress": 0.5556
+     }
+    ]
+   }
+  },
+  "stats": [],
+  "history": []
+ },
+ "heart_rate": {
+  "_figma": "Heartrate Monitoring 683:54394 (FigCraft 8910) — Day/Month/Year identical",
+  "current": 84,
+  "min": 47,
+  "max": 100,
+  "bars": [
+   [
+    0.0,
+    59.5,
+    6.51
+   ],
+   [
+    6.51,
+    50.2,
+    25.1
+   ],
+   [
+    13.95,
+    32.54,
+    34.4
+   ],
+   [
+    20.45,
+    23.24,
+    43.7
+   ],
+   [
+    28.82,
+    33.47,
+    13.95
+   ],
+   [
+    35.33,
+    42.77,
+    4.65
+   ],
+   [
+    41.84,
+    42.77,
+    13.95
+   ],
+   [
+    49.27,
+    56.71,
+    12.09
+   ],
+   [
+    55.78,
+    74.38,
+    4.65
+   ],
+   [
+    63.22,
+    91.11,
+    15.8
+   ],
+   [
+    69.73,
+    69.73,
+    15.8
+   ],
+   [
+    77.16,
+    60.43,
+    17.66
+   ],
+   [
+    85.53,
+    58.57,
+    36.26
+   ],
+   [
+    92.04,
+    52.99,
+    38.12
+   ],
+   [
+    99.48,
+    60.43,
+    12.09
+   ],
+   [
+    105.98,
+    73.45,
+    13.95
+   ],
+   [
+    113.42,
+    61.36,
+    12.09
+   ],
+   [
+    119.93,
+    72.52,
+    8.37
+   ],
+   [
+    126.44,
+    49.27,
+    39.98
+   ],
+   [
+    133.88,
+    34.4,
+    39.98
+   ],
+   [
+    141.31,
+    24.17,
+    34.4
+   ],
+   [
+    148.75,
+    11.16,
+    34.4
+   ],
+   [
+    155.26,
+    33.47,
+    12.09
+   ],
+   [
+    161.77,
+    39.05,
+    12.09
+   ],
+   [
+    169.2,
+    22.31,
+    38.12
+   ],
+   [
+    175.71,
+    31.61,
+    17.66
+   ],
+   [
+    183.15,
+    44.63,
+    12.09
+   ],
+   [
+    189.66,
+    52.99,
+    12.09
+   ],
+   [
+    197.09,
+    59.5,
+    6.51
+   ],
+   [
+    204.53,
+    35.33,
+    12.09
+   ],
+   [
+    211.04,
+    29.75,
+    13.95
+   ],
+   [
+    218.48,
+    35.33,
+    15.8
+   ],
+   [
+    224.98,
+    10.23,
+    34.4
+   ],
+   [
+    232.42,
+    10.23,
+    17.66
+   ],
+   [
+    238.93,
+    22.31,
+    12.09
+   ],
+   [
+    245.44,
+    43.7,
+    8.37
+   ],
+   [
+    254.73,
+    19.52,
+    38.12
+   ],
+   [
+    261.24,
+    31.61,
+    38.12
+   ],
+   [
+    268.68,
+    39.05,
+    12.09
+   ],
+   [
+    275.19,
+    47.41,
+    10.23
+   ],
+   [
+    281.7,
+    13.95,
+    12.09
+   ],
+   [
+    289.13,
+    23.24,
+    10.23
+   ],
+   [
+    295.64,
+    28.82,
+    4.65
+   ],
+   [
+    303.08,
+    0.0,
+    41.84
+   ],
+   [
+    310.52,
+    32.54,
+    6.51
+   ],
+   [
+    317.02,
+    29.75,
+    15.8
+   ],
+   [
+    324.46,
+    44.63,
+    16.73
+   ],
+   [
+    330.97,
+    36.26,
+    52.99
+   ]
+  ],
+  "summary": [
+   {
+    "type": "range",
+    "value": "56-100"
+   },
+   {
+    "type": "rest",
+    "value": "56"
+   },
+   {
+    "type": "mid",
+    "value": "72"
+   },
+   {
+    "type": "average",
+    "value": "66"
+   }
+  ],
+  "zones": [
+   {
+    "zone": "light",
+    "minutes": 2,
+    "width": 19
+   },
+   {
+    "zone": "intensive",
+    "minutes": 0,
+    "width": 9
+   },
+   {
+    "zone": "aerobic",
+    "minutes": 4,
+    "width": 47
+   },
+   {
+    "zone": "anaerobic",
+    "minutes": 48,
+    "width": 198
+   },
+   {
+    "zone": "vo2max",
+    "minutes": 12,
+    "width": 101
+   }
+  ]
+ }
+}

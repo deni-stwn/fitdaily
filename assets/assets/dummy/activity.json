@@ -1,0 +1,46 @@
+{
+ "user": {
+  "name": "Brian",
+  "avatar": "assets/images/avatar_brian.png"
+ },
+ "history": [
+  {
+   "type": "running",
+   "title": "Running",
+   "duration": "40m 15s",
+   "calories": "3400 cal",
+   "date": "10 July",
+   "distance": "12",
+   "unit": "km"
+  },
+  {
+   "type": "walking",
+   "title": "Walking",
+   "duration": "1h 15m 10s",
+   "calories": "2400 cal",
+   "date": "7 July",
+   "distance": "5",
+   "unit": "km"
+  }
+ ],
+ "training_index": [
+  {
+   "kind": "fitness_condition",
+   "title": "Fitness condition",
+   "value": "Declining",
+   "caption": "7 July",
+   "marker": 0.12,
+   "min_label": "Declining",
+   "max_label": "Excessive"
+  },
+  {
+   "kind": "vo2_max",
+   "title": "VO₂ Max",
+   "value": "39",
+   "caption": "7 July Fair",
+   "marker": 0.35,
+   "min_label": "Very Poor",
+   "max_label": "Superior"
+  }
+ ]
+}

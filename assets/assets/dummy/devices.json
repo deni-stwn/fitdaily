@@ -1,0 +1,128 @@
+{
+  "devices": [
+    {
+      "id": "watch-1",
+      "name": "Samsung watch 8 Classic",
+      "image": "assets/images/device_samsung_watch.png",
+      "connected": true
+    },
+    {
+      "id": "watch-2",
+      "name": "Samsung watch 8 Classic",
+      "image": "assets/images/device_samsung_watch.png",
+      "connected": false
+    },
+    {
+      "id": "watch-3",
+      "name": "Samsung watch 8 Classic",
+      "image": "assets/images/device_samsung_watch.png",
+      "connected": false
+    }
+  ],
+  "user": {
+    "name": "Brian",
+    "avatar": "assets/images/avatar_brian.png"
+  },
+  "paired": [
+    {
+      "id": "paired-1",
+      "name": "Heart rate",
+      "image": "assets/images/device_watch_product.png",
+      "connection": "connected",
+      "synced": true,
+      "last_sync": "12:09",
+      "device_id": "ZX47-9Q2L",
+      "device_name": "Brian’s Watch",
+      "battery": 85
+    },
+    {
+      "id": "paired-2",
+      "name": "Heart rate",
+      "image": "assets/images/device_watch_product.png",
+      "connection": "connected",
+      "synced": true,
+      "last_sync": "12:09",
+      "device_id": "ZX47-9Q2L",
+      "device_name": "Brian’s Watch",
+      "battery": 85
+    },
+    {
+      "id": "paired-3",
+      "name": "Heart rate",
+      "image": "assets/images/device_watch_product.png",
+      "connection": "connected",
+      "synced": true,
+      "last_sync": "12:09",
+      "device_id": "ZX47-9Q2L",
+      "device_name": "Brian’s Watch",
+      "battery": 85
+    }
+  ],
+  "nearby": [
+    {
+      "id": "nearby-1",
+      "name": "Samsung watch 8 Classic",
+      "image": "assets/images/device_watch_thumb.png",
+      "connection": "connected",
+      "synced": true,
+      "last_sync": "12:09",
+      "device_id": "ZX47-9Q2L",
+      "device_name": "Brian’s Watch",
+      "battery": 85
+    },
+    {
+      "id": "nearby-2",
+      "name": "Samsung watch 8 Classic",
+      "image": "assets/images/device_watch_thumb.png",
+      "connection": "connecting",
+      "synced": true,
+      "last_sync": "12:09",
+      "device_id": "ZX47-9Q2L",
+      "device_name": "Brian’s Watch",
+      "battery": 85
+    },
+    {
+      "id": "nearby-3",
+      "name": "Samsung watch 8 Classic",
+      "image": "assets/images/device_watch_thumb.png",
+      "connection": "disconnected",
+      "synced": true,
+      "last_sync": "12:09",
+      "device_id": "ZX47-9Q2L",
+      "device_name": "Brian’s Watch",
+      "battery": 85
+    }
+  ],
+  "faqs": [
+    {
+      "id": "faq-1",
+      "question": "How does the app connect to wearables?",
+      "answer": "If your device can't connect, try restarting it to fix common connection issues quickly."
+    },
+    {
+      "id": "faq-2",
+      "question": "How does the app track calories burned?",
+      "answer": "Calories are estimated from your heart rate, activity type, duration and body profile."
+    },
+    {
+      "id": "faq-3",
+      "question": "Can users set personal fitness goals?",
+      "answer": "Yes. Open the Goals tab to set daily targets for steps, calories, sleep and more."
+    },
+    {
+      "id": "faq-4",
+      "question": "What features are available for meal planning?",
+      "answer": "Meal planning is not available yet. Track your calories burned in the Activity tab."
+    },
+    {
+      "id": "faq-5",
+      "question": "Can users set personal fitness goals?",
+      "answer": "Yes. Goals can be changed at any time from the Goals tab."
+    },
+    {
+      "id": "faq-6",
+      "question": "Can achievements be shared socially?",
+      "answer": "Sharing achievements is coming soon."
+    }
+  ]
+}

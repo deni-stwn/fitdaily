@@ -1,0 +1,156 @@
+{
+ "day": [
+  {
+   "id": "d1",
+   "activity": "running",
+   "title": "Running",
+   "duration": "40m 15s",
+   "calories": "3400 cal",
+   "date": "10 July",
+   "distance": "12",
+   "unit": "km"
+  },
+  {
+   "id": "d2",
+   "activity": "walking",
+   "title": "Walking",
+   "duration": "1h 15m 10s",
+   "calories": "2400 cal",
+   "date": "7 July",
+   "distance": "5",
+   "unit": "km"
+  }
+ ],
+ "month": [
+  {
+   "id": "m1",
+   "activity": "running",
+   "title": "Running",
+   "duration": "40m 15s",
+   "calories": "3400 cal",
+   "date": "10 July",
+   "distance": "12",
+   "unit": "km"
+  },
+  {
+   "id": "m2",
+   "activity": "walking",
+   "title": "Walking",
+   "duration": "1h 15m 10s",
+   "calories": "2400 cal",
+   "date": "7 July",
+   "distance": "5",
+   "unit": "km"
+  }
+ ],
+ "year": [
+  {
+   "id": "y1",
+   "activity": "running",
+   "title": "Running",
+   "duration": "40m 15s",
+   "calories": "3400 cal",
+   "date": "10 July",
+   "distance": "12",
+   "unit": "km"
+  },
+  {
+   "id": "y2",
+   "activity": "walking",
+   "title": "Walking",
+   "duration": "1h 15m 10s",
+   "calories": "2400 cal",
+   "date": "7 July",
+   "distance": "5",
+   "unit": "km"
+  },
+  {
+   "id": "y3",
+   "activity": "exercise",
+   "title": "Exercise",
+   "duration": "1h 5m 20s",
+   "calories": "4400 cal",
+   "date": "8 July"
+  },
+  {
+   "id": "y4",
+   "activity": "cycling",
+   "title": "Cycling",
+   "duration": "4h 15m 10s",
+   "calories": "7000 cal",
+   "date": "10 July",
+   "distance": "32",
+   "unit": "km"
+  },
+  {
+   "id": "y5",
+   "activity": "walking",
+   "title": "Walking",
+   "duration": "45m 30s",
+   "calories": "750 cal",
+   "date": "8 July",
+   "distance": "8",
+   "unit": "km"
+  },
+  {
+   "id": "y6",
+   "activity": "running",
+   "title": "Running",
+   "duration": "2h 0m 25s",
+   "calories": "1200 cal",
+   "date": "9 July",
+   "distance": "20",
+   "unit": "km"
+  },
+  {
+   "id": "y7",
+   "activity": "cycling",
+   "title": "Cycling",
+   "duration": "1h 30m 15s",
+   "calories": "900 cal",
+   "date": "10 July",
+   "distance": "3",
+   "unit": "km"
+  },
+  {
+   "id": "y8",
+   "activity": "running",
+   "title": "Running",
+   "duration": "1h 0m 0s",
+   "calories": "300 cal",
+   "date": "11 July",
+   "distance": "5",
+   "unit": "km"
+  },
+  {
+   "id": "y9",
+   "activity": "cycling",
+   "title": "Cycling",
+   "duration": "3h 15m 50s",
+   "calories": "1500 cal",
+   "date": "12 July",
+   "distance": "12",
+   "unit": "km"
+  },
+  {
+   "id": "y10",
+   "activity": "walking",
+   "title": "Walking",
+   "duration": "1h 15m 10s",
+   "calories": "6400 cal",
+   "date": "7 July",
+   "distance": "10",
+   "unit": "km"
+  },
+  {
+   "id": "y11",
+   "activity": "rowing",
+   "title": "Rowing",
+   "duration": "1h 10m 40s",
+   "calories": "600 cal",
+   "date": "13 July",
+   "distance": "15",
+   "unit": "km"
+  }
+ ]
+}

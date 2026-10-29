@@ -1,0 +1,40 @@
+{
+    "profile": {
+        "name": "Brian",
+        "avatar": "assets/images/avatar_brian.png",
+        "full_name": "Brian McCall",
+        "birth_date": "20th January 2022",
+        "weight": "72",
+        "height": "182",
+        "username": "Brianmc@mail.com"
+    },
+    "health": {
+        "units": "Matrics",
+        "heart_rate_zone": "Aerobic (zone 3)"
+    },
+    "notifications": {
+        "reminders": true,
+        "reminder_time": "12",
+        "reminder_unit": "Minutes",
+        "inactivity_alerts": false,
+        "sleep_reminders": false
+    },
+    "privacy": {
+        "media": false,
+        "data_share": false,
+        "contact": false
+    },
+    "language": "en",
+    "options": {
+        "units": ["Matrics", "Imperial"],
+        "heart_rate_zones": [
+            "Light (zone 1)",
+            "Intensive (zone 2)",
+            "Aerobic (zone 3)",
+            "Anaerobic (zone 4)",
+            "VO2 Max (zone 5)"
+        ],
+        "reminder_units": ["Minutes", "Hours"],
+        "languages": ["en", "ar"]
+    }
+}
