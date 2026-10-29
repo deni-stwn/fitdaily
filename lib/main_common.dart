@@ -1,3 +1,5 @@
+import 'package:device_preview/device_preview.dart';
+import 'package:device_preview/presets.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -11,7 +13,19 @@ import 'my_app.dart';
 import 'shared/wrappers/localization_wrapper.dart';
 
 Future<void> mainCommon({required String name}) async {
-  WidgetsFlutterBinding.ensureInitialized();
+  // Replaces WidgetsFlutterBinding.ensureInitialized().
+  // Web: always on — the site shows the app inside a phone frame.
+  // Native: debug/profile only, driven from the DevTools "device_preview" tab.
+  DevicePreview.enable(
+    enabled: kIsWeb || !kReleaseMode,
+    padding: kIsWeb ? const EdgeInsets.all(24) : EdgeInsets.zero,
+  );
+  if (kIsWeb) {
+    // 440×956 = Figma frame (AppDesign.frameSize).
+    await DevicePreview.maybeController?.applyPreset(
+      DevicePresets.iPhone16ProMax,
+    );
+  }
   if (kDebugMode) {
     Bloc.observer = AppBlocObserver();
   }
@@ -33,6 +47,8 @@ Future<void> mainCommon({required String name}) async {
 // flutter run --flavor dev -t lib/main_dev.dart
 // to run prod flavor
 // flutter run --flavor prod -t lib/main_prod.dart
+// to build web (output: build/web)
+// flutter build web -t lib/main_prod.dart
 // to generate translations with keys
 // dart run easy_localization:generate --source-dir ./assets/translations -f keys -o locale_keys.g.dart
 // to generate feature

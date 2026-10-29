@@ -46,6 +46,7 @@ analyzer:
     - windows/**
     - macos/**
     - linux/**
+    - web/**
   errors:
     prefer_const_constructors: ignore
     depend_on_referenced_packages: ignore

@@ -1,4 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_flavor/flutter_flavor.dart';
@@ -30,8 +31,8 @@ class MyApp extends StatelessWidget {
             designSize: AppDesign.frameSize,
             minTextAdapt: true,
             splitScreenMode: true,
-            builder: (context, child) => FlavorBanner(
-              child: MaterialApp.router(
+            builder: (context, child) {
+              final app = MaterialApp.router(
                 title: AppStrings.appName,
                 debugShowCheckedModeBanner: false,
                 builder: (context, child) =>
@@ -41,8 +42,10 @@ class MyApp extends StatelessWidget {
                 localizationsDelegates: context.localizationDelegates,
                 locale: context.locale,
                 routerConfig: router,
-              ),
-            ),
+              );
+              // Web is a public preview of the design — no flavor ribbon.
+              return kIsWeb ? app : FlavorBanner(child: app);
+            },
           );
         },
       ),
